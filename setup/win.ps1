@@ -27,15 +27,9 @@ $programs = @(
     
     [pscustomobject]@{ProgramName='make';PackageName='make'}
 
-    [pscustomobject]@{ProgramName='nasm';PackageName='nasm'}
-
-    [pscustomobject]@{ProgramName='pandoc';PackageName='pandoc'}
-
     [pscustomobject]@{ProgramName='win_flex';PackageName='winflexbison3'}
 
     [pscustomobject]@{ProgramName='win_bison';PackageName='winflexbison3'}
-
-    [pscustomobject]@{ProgramName='code';PackageName='vscode'}
 )
 function Install_Programs() {
     $programs | ForEach-Object {
