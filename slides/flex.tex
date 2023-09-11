@@ -84,6 +84,37 @@
   código de análise dos padrões.}
 \end{frame}
 
+\subsection{Analisador léxico}
+
+\begin{frame}{Analisador léxico}{Função}
+
+  Primeira fase de compilação:
+
+  \begin{enumerate}
+  \item Lê a entrada de caracteres do código-fonte;
+  \item Agrupa-os em lexemas;
+  \item Produz uma saída de sequência {\it tokens\/} para cada lexema;
+  \item O fluxo de {\it tokens\/} é enviado para o analisador
+    sintático ({\it parser\/}).
+  \end{enumerate}\bigskip
+
+  Nesta fase, o analisador léxico pode interagir com a tabela
+  de símbolos.
+\end{frame}
+
+
+\begin{frame}{Vantagens da separação do analisador sintático}
+
+\pause
+
+\begin{itemize}
+\item Simplicidade do projeto do compilador.
+\item Melhoria na eficiência.
+\item Portabilidade.
+\end{itemize}
+
+\end{frame}
+
 \subsection{Expressões regulares}
 \frame{\tableofcontents[currentsubsection]}
 
@@ -165,22 +196,6 @@
 
 \subsection{Usando {\tt flex}}
 \frame{\tableofcontents[currentsubsection]}
-
-\begin{frame}{Analisador léxico}{Função}
-
-  Primeira fase de compilação:
-
-  \begin{enumerate}
-  \item Lê a entrada de caracteres do código-fonte;
-  \item Agrupa-os em lexemas;
-  \item Produz uma saída de sequência {\it tokens\/} para cada lexema;
-  \item O fluxo de {\it tokens\/} é enviado para o analisador
-    sintático ({\it parser\/}).
-  \end{enumerate}\bigskip
-
-  Nesta fase, o analisador léxico pode interagir com a tabela
-  de símbolos.
-\end{frame}
 
 \begin{frame}{Criando um analisador léxico}
 \includegraphics[scale=.4]{lex-compilador.png}
