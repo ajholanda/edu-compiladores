@@ -1,0 +1,36 @@
+test
+
+# VS Code
+settings.json
+
+# Pandoc
+*.html
+*.pdf
+
+# cc
+a.out
+*.exe
+
+# flex
+*.yy.c
+*.lex.c
+
+# bison
+*.tab.*
+calc.c
+*.output
+
+# Vim
+*~
+
+# LaTeX
+*.aux
+*.log
+*.out
+main.nav
+main.snm
+main.toc
+main.vrb
+
+# binaries
+calc
