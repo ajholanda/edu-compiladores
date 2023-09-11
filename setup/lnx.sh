@@ -4,7 +4,7 @@
 PKG='apt'
 
 sudo $PKG install \
-     bison flex gcc- gdb \
-     nasm make pandoc snapd
+     bison flex gcc gdb \
+     make snapd
 
 sudo snap install code
