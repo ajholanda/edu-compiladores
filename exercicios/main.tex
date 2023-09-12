@@ -1,0 +1,29 @@
+\documentclass{article}
+
+\usepackage{a4wide}
+\usepackage{enumerate}
+\usepackage{fontenc}
+\usepackage{fontspec}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+
+\newcounter{theexerc}
+\def\newexerc{\addtocounter{theexerc}{1}\bigskip\noindent\arabic{theexerc}.}
+\def\resetexerc{\setcounter{theexerc}{0}}
+
+\begin{document}
+\title{Exercícios}
+\author{Adriano J. Holanda e Zhao Liang}
+\date{2023-09-12}
+\maketitle
+
+\input{flex}
+%\input{bison}
+
+\section*{Referência}
+\begin{itemize}
+\item Alfred V. Aho, Monica S. Lam, Ravi Sethi, Jeffrey
+  D. Ullman. Compiladores: Princípios, Técnicas e Ferramentas. Editora
+  Pearson, 2$^a$ edição, 2007.
+\end{itemize}
+
+\end{document}

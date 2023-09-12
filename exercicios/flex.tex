@@ -1,0 +1,116 @@
+\section*{Análise léxica}
+
+\paragraph{1.} Descreva o comportamento das expressões regulares a
+seguir e dê alguns exemplos de {\it strings\/} que se encaixam em cada
+padrão.
+
+\begin{enumerate}
+\item {\tt [+-]*[0-9]+$\backslash$.[0-9]+}
+
+\item {\tt [1-9][0-9]*|0}
+
+\item {\tt [A-Z]+}
+
+\item {\tt [a-zA-Z\_]+}
+
+\item {\tt [a-zA-Z][a-zA-Z0-9\_]*}
+
+\item {\tt [az-]+}
+
+\item {\tt "[a-z]"}
+
+\item {\tt [0-9]+[}$\backslash${\tt t]*}$\backslash${\tt *[}$\backslash${\tt t]*[0-9]+}
+
+\item {\tt x(cachorro|gato)x}
+
+\item {\tt cachorro.*gato}
+
+\item {\tt [gato]}
+
+\item {\tt [gato]+}
+
+\item {\tt (ab|cd)?(ef)*}
+
+\item {\tt (a|b)*a(a|b)}
+
+\item {\tt (a|b)*a(a|b)(a|b)}
+
+\item {\tt (a|b)*a(a|b)(a|b)(a|b)}
+
+\item {\tt (abcd|abc)/d}
+
+\item {\tt (a|ab)/ba}
+
+\item {\tt aa*|a*}
+
+\item {\tt [$\backslash$\^{}$\backslash$+$\backslash$-$\backslash$:$\backslash$*$\backslash$]]}
+\end{enumerate}
+
+\paragraph{2.} Implemente os seguintes programas usando o analisador léxico {\tt flex}.
+
+\begin{enumerate}[a)]
+\item Imprima o número de palavras que comecem com letras maiúsculas
+  de um texto fornecido pela entrada-padrão ou arquivo (daqui pra
+  frente só texto fornecido).
+
+\item Imprima o número de letras maiúsculas, minúsculas e números de
+  um texto fornecido.
+
+\item Imprima o número de vogais e consoantes de um texto fornecido.
+
+\item Que tenha comportamento parecido com o do programa
+  \href{https://pt.wikipedia.org/wiki/Wc}{\tt wc} que imprime o número
+        de caracteres (bytes), palavras (somente letras) 
+        e número de linhas de um texto fornecido.
+
+\item A partir de um texto fornecido, imprima os valores existentes no
+  texto em moeda brasileira, por exemplo, {\tt R\$ 12,50}, {\tt
+    R\$312,78} ou {\tt R\$ 0,62}.  Se a entrada fornecida for
+
+\begin{verbatim}
+A calça original custa R$ 78,50, porém o terno custa em
+torno de R$700,00 a   R$  1250,00. A camisa social sai
+em torno de R$ 73,25. Se o pagamento for em cartão há
+uma taxa adicional de R$ 0,80 a R$ 5,00.
+\end{verbatim}
+
+o programa deverá imprimir
+
+\begin{verbatim}
+R$ 78,50
+R$700,00
+R$  1250,00
+R$ 73,25
+R$ 0,80
+R$ 5,00
+\end{verbatim}
+
+Dica: utilize um {\it buffer\/} (vetor de {\it strings\/}) para
+armazenar os textos contendo os valores.
+
+\item Receba um arquivo contendo código fonte em C e imprima a quantidade de:
+    - palavras reservadas: {\tt if}, {\tt else}, {\tt while}, {\tt do}, {\tt switch} e {\tt case};
+    - funções;
+    - números inteiros;
+    - caracteres especiais: "{\tt !}", "{\tt @}", "{\tt *}", "{\tt \&}", "{\tt |}", "{\tt \%}", "{\tt \$}" e "{\tt \#}".
+
+Após a compilação do programa e supondo que o binário gerado
+chama-se {\tt a.exe} (Windows) ou {\tt a.out} (Linux),
+forneça um arquivo com código C como argumento
+da seguinte forma no terminal (PowerShell, bash, ...):
+
+\begin{verbatim}
+# Windows
+.\a.exe arquivo.c
+# Linux
+./a.out arquivo.c
+\end{verbatim}
+
+\item (Adaptado de Aho, 2007) Que analise uma expressão SQL e
+  reconheça as palavras-chave {\tt SELECT}, {\tt FROM} e {\tt WHERE}
+  em qualquer combinação de maiúsculas ou minúsculas, bem como os
+  identificadores existentes na expressão.  Não há necessidade de
+  adicionar o identificador em um tabela de símbolos, mas descreva
+  como seria o tratamento dos identificadores levando em conta que a
+  diferença entre maiúsculas e minúsculas é ignorada.
+\end{enumerate}
