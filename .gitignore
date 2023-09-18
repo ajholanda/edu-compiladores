@@ -34,3 +34,6 @@ main.vrb
 
 # binaries
 calc
+
+# Windows
+$null
