@@ -2,7 +2,7 @@
 
 ## Recursos Didáticos
 
-- `flex`: [exercícios](https://drive.google.com/file/d/1u4aa48kb-XffSip56_f1kjby0SY2bsmY/view?usp=sharing), [slides](https://drive.google.com/file/d/1Sf4hlcPEDvNH3PQez9--1zATqZLPjZSl/view?usp=sharing).
+- `flex`: [exercícios](https://drive.google.com/file/d/1nUIRZ4Wdv9Y3K-DrIPcgCxeZ0PT3npQQ/view?usp=sharing), [slides](https://drive.google.com/file/d/1Sf4hlcPEDvNH3PQez9--1zATqZLPjZSl/view?usp=sharing).
 
 ## Setup
 
