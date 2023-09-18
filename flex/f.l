@@ -1,5 +1,5 @@
 /*
-    Exercicio 2e
+    Exercicio 2f
 */
 
 %option noyywrap
