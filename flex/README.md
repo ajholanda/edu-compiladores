@@ -7,7 +7,7 @@
 Abra o PowerShell e entre no diretório que contém os arquivos com os códigos e execute:
 
 ```
-PS ...\compiladores\lex> flex -o a.yy.c a.l
+PS ...\compiladores\lex> win_flex -o a.yy.c a.l
 
 PS ...\compiladores\lex> gcc -o a.exe a.yy.c
 
