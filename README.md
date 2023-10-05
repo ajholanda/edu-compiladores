@@ -28,7 +28,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 ### Linux
 
-Execute os seguintes comandos no `bash`:
+Execute os seguintes comandos no terminal:
 
 ```
 git clone https://github.com/ajholanda/edu-compiladores
