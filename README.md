@@ -1,8 +1,10 @@
-# Compiladores (`flex` + `yacc`)
+# Compiladores (`lex` + `yacc`)
 
 ## Recursos Didáticos
 
-- `flex`: [exercícios](https://drive.google.com/file/d/1nUIRZ4Wdv9Y3K-DrIPcgCxeZ0PT3npQQ/view?usp=sharing), [slides](https://drive.google.com/file/d/1Sf4hlcPEDvNH3PQez9--1zATqZLPjZSl/view?usp=sharing).
+- `yacc`: [exercícios](https://drive.google.com/file/d/1oLPe0OWjDwQbWOt0_THAbiwn3MoAZhIE/view?usp=sharing), 
+[slides](https://drive.google.com/file/d/1nkz2ERd3uo0wONgNEiYpa7niGEi3dEs-/view?usp=sharing).
+- `lex`: [exercícios](https://drive.google.com/file/d/1nUIRZ4Wdv9Y3K-DrIPcgCxeZ0PT3npQQ/view?usp=sharing), [slides](https://drive.google.com/file/d/1Sf4hlcPEDvNH3PQez9--1zATqZLPjZSl/view?usp=sharing).
 
 ## Setup
 
@@ -35,6 +37,19 @@ bash lnx.sh
 ```
 
 O script foi testado no Debian/Ubuntu, talvez algumas alterações tenham que ser feitas para outras distribuições.
+
+
+## Docker
+
+Execute os comandos (bash ou PowerShell) a seguir para criar um contêiner 
+e executar a instância com os códigos do flex e bison:
+
+```
+$ docker build --rm . -t bison-image
+$ docker run --rm -it --entrypoint bash bison-image
+```
+
+A instância contém todos os programas necessários para compilação dos arquivos.
 
 # Dicas
 
