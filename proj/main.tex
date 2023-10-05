@@ -49,16 +49,16 @@
 linguagem C;
 \item Um programa \lang{} é uma sequência de definições de 
 funções sem recursividade e sem variáveis globais;
-\item A função principal por onde é iniciada a execução 
-das instruções chama-se {\tt main} que retorna um valor e 
+\item A função principal, por onde é iniciada a execução 
+das instruções, chama-se {\tt main}, retorna um valor e 
 não possui parâmetros;
 \item Só ha um tipo de dados na linguagem, o tipo {\bf inteiro}, 
-onde na avalização Booleana o {\tt 0} é falso e qualquer número 
+onde na avaliação Booleana o {\tt 0} é falso e qualquer número 
 diferente de {\tt 0} corresponde ao Booleano verdadeiro.
 \end{itemize}
 
 \paragraph{Restrições.} A linguagem é bem restrita, não havendo 
-vetores, ponteiros nem módulos. Todo o programa é definido em um 
+vetores, ponteiros e módulos. Todo o programa é definido em um 
 único arquivo.
 
 \subsection{Funções}
@@ -67,7 +67,7 @@ vetores, ponteiros nem módulos. Todo o programa é definido em um
 \begin{itemize}
     \item Uma definição de função começa com a palavra reservada 
     {\bf fn} seguida pelo seu {\bf nome}, uma lista de parâmetros 
-    entre parênteses e um corpo.
+    separados por vírgula entre parênteses e um corpo.
     \item Todas as funções devem retornar um valor mesmo que este 
     valor não seja usado diretamente. O retorno do valor é realizado 
     usando o comando {\bf return}.
@@ -88,7 +88,7 @@ Uma proposição na linguagem \lang{} pode ser:
 \item incremento e decremento;
 \item retorno de função;
 \item chamada de função ({\it function call});
-\item desvio de fluxo ({\tt if} com e sem {\tt else})
+\item desvio de fluxo ({\tt if} com e sem {\tt else});
 \item laço ({\it loop}, só há um, o {\tt while}).
 \end{enumerate}
 
