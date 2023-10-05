@@ -99,7 +99,7 @@ código em C
         \begin{tabbing}
           E \= $\rightarrow$ \= E + T \= | T \\
           T \> $\rightarrow$ \> T * F \> | F\\
-          F \> $\rightarrow$ \> ( E ) \> | {\bf digit}$^1$\\
+          F \> $\rightarrow$ \> ( E ) \> | {\bf digit}$^(1)$\\
         \end{tabbing}
       \end{block}
     \end{column}
@@ -171,61 +171,61 @@ factor : '(' expr ')'      { $$ = $2; }
   \end{tikzpicture}\bigskip
 
   \scriptsize
-  \begin{tabular}[h]{r|l|l|c|l}
+  \begin{tabular}[h]{r|l|c|l}
     \toprule
-    & \hfil pilha &\hfil símbolo & entrada &\hfil ação \\
+    & \hfil pilha & entrada &\hfil ação \\
     \midrule
-    (1) & 0 &  &\hfill {\bf digit} + {\bf digit} * {\bf digit}\$& desloca \\
+    (1) &   &\hfill {\bf digit} + {\bf digit} * {\bf digit}\$& desloca \\
     \only<2->{
-    (2) & 0 1 &   {\bf digit} &\hfill + {\bf digit} * {\bf digit}\$ & reduz: $F\rightarrow$ {\bf digit} \\
+    (2) &  {\bf digit} &\hfill + {\bf digit} * {\bf digit}\$ & reduz: $F\rightarrow$ {\bf digit} \\
     }
     \only<3->{
-    (3) & 0 6 &   $F$ &\hfill + {\bf digit} * {\bf digit}\$ & reduz: $F\rightarrow T$ \\
+    (3) & $F$ &\hfill + {\bf digit} * {\bf digit}\$ & reduz: $F\rightarrow T$ \\
     }
     \only<4->{
-    (4) & 0 5 &   $T$ &\hfill + {\bf digit} * {\bf digit}\$ & reduz: $T\rightarrow E$ \\
+    (4) & $T$ &\hfill + {\bf digit} * {\bf digit}\$ & reduz: $T\rightarrow E$ \\
     }
     \only<5->{
-    (5) & 0 4 &   $E$ &\hfill + {\bf digit} * {\bf digit}\$ & desloca \\
+    (5) & $E$ &\hfill + {\bf digit} * {\bf digit}\$ & desloca \\
     }
     \only<6->{
-    (6) & 0 4 10&   $E+$ &\hfill {\bf digit} * {\bf digit}\$ & desloca \\
+    (6) & $E+$ &\hfill {\bf digit} * {\bf digit}\$ & desloca \\
     }
     \only<7->{
-    (7) & 0 4 10 1&   $E+$ {\bf digit} &\hfill  * {\bf digit}\$ & reduz: $F\rightarrow$ {\bf digit} \\
+    (7) & $E+$ {\bf digit} &\hfill  * {\bf digit}\$ & reduz: $F\rightarrow$ {\bf digit} \\
     }
     \note{aqui lookahead no * para decidir a próxima ação}
     \only<8->{
-    (8) & 0 4 10 6 &   $E+F$ &\hfill  * {\bf digit}\$ & reduz: $T\rightarrow F$ \\
+    (8) &  $E+F$ &\hfill  * {\bf digit}\$ & reduz: $T\rightarrow F$ \\
     }
     \only<9->{
-    (9) & 0 4 10 13 &   $E+T$ &\hfill  * {\bf digit}\$ & desloca \\}
+    (9) &  $E+T$ &\hfill  * {\bf digit}\$ & desloca \\}
     \note{aqui lookahead no digit para decidir a próxima ação}
     \only<10->{
-    (10) & 0 4 10 13 11 &   $E+T*$ &\hfill {\bf digit}\$ & desloca \\
+    (10) & $E+T*$ &\hfill {\bf digit}\$ & desloca \\
     }
     \only<11->{
-    (11) & 0 4 10 13 11 1&   $E+T*${\bf digit} &\hfill \$ & reduz: $F\rightarrow$ {\bf digit} \\
+    (11) & $E+T*${\bf digit} &\hfill \$ & reduz: $F\rightarrow$ {\bf digit} \\
     }
     \only<12->{
-    (12) & 0 4 10 13 11 14&   $E+T*F$ &\hfill \$ & reduz: $T\rightarrow T*F$ \\
+    (12) & $E+T*F$ &\hfill \$ & reduz: $T\rightarrow T*F$ \\
     }
     \note{aqui lookahead no newline para decidir a próxima ação}
     \only<13->{
-    (13) & 0 4 10 13&   $E+T$ &\hfill \$ & reduz: $E\rightarrow E+T$ \\
+    (13) & $E+T$ &\hfill \$ & reduz: $E\rightarrow E+T$ \\
     }
     \only<14->{
-    (14) & 0 4 &   $E$ &\hfill \$ & desloca {\tt '$\backslash$n'} \\
+    (14) & $E$ &\hfill \$ & desloca {\tt '$\backslash$n'} \\
     }
     \only<15->{
-    (15) & 0 4 9 &   $E${\tt '$\backslash$n'} &\hfill \$ & reduz: $L\rightarrow E${\tt '$\backslash$n'} \\
+    (15) & $E${\tt '$\backslash$n'} &\hfill \$ & reduz: $L\rightarrow E${\tt '$\backslash$n'} \\
     }
     \only<16>{
-    (16) & 0  &   $L$ &\hfill \$ & aceita \\
+    (16) & $L$ &\hfill \$ & aceita \\
     }
 
 
-    & & & &\\
+    & & & \\
    \bottomrule
   \end{tabular}
 \end{frame}
