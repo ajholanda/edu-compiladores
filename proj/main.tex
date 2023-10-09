@@ -36,7 +36,7 @@
 
 \title{Compiladores: Projeto}
 \author{Zhao Liang}
-\date{2022-10-18}
+\date{2023-10-10}
 \begin{document}
 \maketitle
 
@@ -52,9 +52,13 @@ funções sem recursividade e sem variáveis globais;
 \item A função principal, por onde é iniciada a execução 
 das instruções, chama-se {\tt main}, retorna um valor e 
 não possui parâmetros;
-\item Só ha um tipo de dados na linguagem, o tipo {\bf inteiro}, 
-onde na avaliação Booleana o {\tt 0} é falso e qualquer número 
-diferente de {\tt 0} corresponde ao Booleano verdadeiro.
+\item Só há dois tipos de dados na linguagem, o tipo {\bf inteiro}
+	de 64 bits ({\tt i64}) e o tipo ponto flutuante de 
+	64 bits ({\tt f64}). Na avaliação Booleana o {\tt 0} é falso 
+	e qualquer número diferente de {\tt 0} corresponde ao Booleano verdadeiro.
+\item  Espaço em branco ` ', tabulação `$\backslash$t', 
+   retorno de ``carro'' `$\backslash$r' e nova linha
+`$\backslash$n' devem ser ignorados.
 \end{itemize}
 
 \paragraph{Restrições.} A linguagem é bem restrita, não havendo 
@@ -71,11 +75,9 @@ vetores, ponteiros e módulos. Todo o programa é definido em um
     \item Todas as funções devem retornar um valor mesmo que este 
     valor não seja usado diretamente. O retorno do valor é realizado 
     usando o comando {\bf return}.
-    \item  Espaço em branco ` ', tabulação `$\backslash$t', 
-	    retorno de ``carro'' `$\backslash$r' e nova linha
-		`$\backslash$n' devem ser ignorados.
+    \item Os parâmetros de uma função devem ser separados por vírgula.
+	    Exemplo: {\tt fn foo(a i64, b f64) \{ ... \}}.
 \end{itemize}
-
 
 \subsection*{Proposição ({\it statement})}
 
@@ -88,7 +90,8 @@ Uma proposição na linguagem \lang{} pode ser:
 \item incremento e decremento;
 \item retorno de função;
 \item chamada de função ({\it function call});
-\item desvio de fluxo ({\tt if} com e sem {\tt else});
+\item desvio de fluxo ({\tt if} com e sem {\tt else}), 
+	sem suporte a {\tt else if};
 \item laço ({\it loop}, só há um, o {\tt while}).
 \end{enumerate}
 
@@ -124,10 +127,10 @@ do fatorial como um exemplo de aplicação da linguagem
     label=lst:fat,
     caption={Exemplo de código usando a linguagem \lang{}.}
 ]
-fn fatorial(n) {
+fn fatorial(n i64) {
         var
-            i = 1;
-            r = 1;
+           i : i64 = 1;
+           r : i64 = 1;
     
         if n < 0 {
             return -1;
@@ -142,8 +145,8 @@ fn fatorial(n) {
     
 fn main() {
         var 
-            i = 3;
-            f = 0;
+           i : i64 = 3;
+           f : i64 = 0;
     
         f = fat(i);
 
@@ -162,8 +165,18 @@ para a linguagem;
 \item A partir do analisador sintático, imprima a tabela de 
 símbolos para o código de entrada com os símbolos apresentados 
 de acordo com o contexto. Por exemplo, para a Listagem~\ref{lst:fat}
- o símbolo {\tt i} da função {\tt fatorial} deve ser impresso como 
- {\tt fatorial.i}.
+a saída da execução do compiladore seria parecida com:
+
+\begin{verbatim}
+fatorial.n [i64]
+fatorial.i [i64]
+fatorial.r [i64]
+main.i [i64]
+main.f [i64]
+\end{verbatim}
+
+\item Descreva como checar se uma variável ao ser usada, já foi
+  declarada. (Não é necessário especificar na gramática.)
 \end{enumerate}
 
 O código da Listagem~\ref{lst:fat} pode ser usado como referência
