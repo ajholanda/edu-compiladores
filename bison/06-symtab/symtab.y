@@ -29,8 +29,8 @@ int yydebug = 1;
 %token  <s> T_ID
 %type   <i> expr
 
-%left '*' '/'
 %left '+' '-'
+%left '*' '/'
 %right '='
 
 %start program
