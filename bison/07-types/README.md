@@ -16,7 +16,7 @@ u16     | inteiro de 16 bits sem sinal
 u8      | inteiro de 8 bits sem sinal
 f64     | ponto flutuante de 64 bits
 f32     | ponto flutuante de 32 bits
-char    | caracter
+char    | caracter (conjunto reduzido a [a-zA-Z0-9])
 str     | _string_
 bool    | Booleano `true` ou `false`
 
