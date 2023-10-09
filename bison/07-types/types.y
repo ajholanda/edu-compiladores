@@ -12,9 +12,6 @@
 /* tabela de simbolos */
 #include "types.h"
 
-static struct symtab symbols[MAXSYMS];
-static int nsyms = 0; /* number of symbols */
-
 /* 
   To debug, uncomment and run 
   bison --verbose --debug -d file.y 
@@ -95,51 +92,22 @@ int yyerror(const char *msg, ...) {
 	vfprintf(stderr, msg, args);
 	va_end(args);
 
-	exit(EXIT_FAILURE);
+	return 0;
 }
-
-static struct symtab *lookup(char *id) {
-        int i;
-        struct symtab *p;
-
-        for (i = 0; i < nsyms; i++) {
-                p = &symbols[i];
-                if (strncmp(p->id, id, MAXTOKEN) == 0)
-                        return p;
-        }
-
-        return NULL;
-}
-
-static void install(char *id, union value_union val, enum type_enum typ) {
-        struct symtab *p;
-
-        p = &symbols[nsyms++];
-        strncpy(p->id, id, MAXTOKEN);
-        p->val = val;
-        p->typ = typ;
-}
-
-void assign(char *id, union value_union val, enum type_enum typ) {
-        struct symtab *p;
-
-        p = lookup(id);
-        if(p == NULL)
-                install(id, val, typ);
-        else
-                p->val = val;
-}
-
 
 int main (int argc, char **argv) {
         FILE *fp;
         
-        if (argc <= 0)
-                yyerror("usage: %s file\n", argv[0]);
+        if (argc <= 0) {
+                fprintf(stderr, "usage: %s file\n", argv[0]);
+		return 1;
+	}
 
         fp = fopen(argv[1], "r");
-        if (!fp)
-                yyerror("error: could not open %s.\n", argv[1]);
+        if (!fp) {
+                perror(argv[1]);
+		return 1;
+	}
 
         yyin = fp;
         do {
