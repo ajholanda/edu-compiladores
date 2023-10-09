@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define YYDEBUG 1
+//int yydebug = 1;
 
 /* flex */
 extern int yylineno;
@@ -54,10 +54,6 @@ int yyerror(const char *msg, ...) {
 }
 
 int main (int argc, char **argv) {
-    #ifdef YYDEBUG
-    yydebug = 1;
-    #endif
-
     return  yyparse();
 
 }
