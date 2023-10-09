@@ -50,7 +50,8 @@ $ docker build --rm . -t bison-image
 $ docker run --rm -it --entrypoint bash bison-image
 ```
 
-A instância contém todos os programas necessários para compilação dos arquivos.
+A instância contém todos os programas necessários para compilação dos arquivos
+que são copiados para os diretórios `/home/flex` e `/home/bison`.
 
 # Dicas
 
