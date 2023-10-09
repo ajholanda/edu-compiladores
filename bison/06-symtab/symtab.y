@@ -117,12 +117,16 @@ int main (int argc, char **argv) {
         int i;
         struct symtab *p;
 
-        if (argc <= 0)
-                yyerror("usage: %s file\n", argv[0]);
+        if (argc <= 0) { 
+                fprintf(stderr, "usage: %s file\n", argv[0]);
+		return 1;
+	}
 
         fp = fopen(argv[1], "r");
-        if (!fp)
-                yyerror("error: could not open %s.\n", argv[1]);
+        if (!fp) {
+                perror(argv[1]);
+		return errno;
+	}
 
         yyin = fp;
         do {
@@ -135,5 +139,5 @@ int main (int argc, char **argv) {
                 printf("%s=%d\n", p->id, p->val);
         }
 
-        return EXIT_SUCCESS;
+        return 0;
 }
