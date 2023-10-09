@@ -7,14 +7,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* tabela de simbolos */
-#include "symtab.h"
+#define MAXTOKEN 32
+#define MAXSYMS 256
+
+struct symtab {
+        char id[MAXTOKEN];
+        int val;
+};
+
+extern void assign(char *id, int val);
+// Stop warning about implicit declaration of yylex().
+extern int yylex();
+int yyerror(const char *msg, ...);
 
 static struct symtab symbols[MAXSYMS];
 static int nsyms = 0; /* number of symbols */
 
 /* 
-  To debug, uncomment and run 
+  To debug, run 
   bison --verbose --debug -d file.y 
 */
 int yydebug = 1;
