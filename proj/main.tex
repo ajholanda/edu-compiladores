@@ -1,5 +1,13 @@
 \documentclass{article}
 
+\usepackage[
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue,
+    menucolor=blue,
+    anchorcolor=blue,
+    filecolor=blue
+]{hyperref}
 \usepackage{xcolor}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -191,5 +199,15 @@ yacc -d -o xyz.tab.c xyz.y
 cc -o xyz xyz.tab.c
 ./xyz fat.xyz
 \end{lstlisting}
+
+Quaisquer regras gramaticais que possam surgir 
+e que não estejam definidas neste documento,
+podem ser arbitradas pelo desenvolvedor da
+gramática.
+
+Quaisquer dúvidas podem ser postadas como 
+\href{https://github.com/ajholanda/edu-compiladores/issues}{{\it issue}}
+no repositório das práticas da disciplina, para que todos
+tenham acesso às informações.
 
 \end{document}
