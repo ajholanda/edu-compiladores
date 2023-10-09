@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//int yydebug = 1;
+int yydebug = 1;
 
 /* flex */
 extern int yylineno;
