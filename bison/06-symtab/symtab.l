@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include "symtab.tab.h"
 
-#include "symtab.h"
-
 extern int yyerror (char const *msg, ...);
 %}
 T_ID        [a-zA-Z][a-zA-Z0-9_]*
