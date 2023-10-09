@@ -67,7 +67,7 @@ int yyerror(const char *msg, ...) {
 	vfprintf(stderr, msg, args);
 	va_end(args);
 
-	exit(EXIT_FAILURE);
+        return 0;
 }
 
 static struct symtab *lookup(char *id) {
