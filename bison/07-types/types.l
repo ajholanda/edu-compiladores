@@ -10,7 +10,7 @@ extern int yyerror (char const *msg, ...);
 
 static char *ptr;
 %}
-T_CHARACTER ['][a-zA-Z][']
+T_CHARACTER ['][a-zA-Z0-9][']
 T_UINT      [+]?[0-9]+
 T_INT       [+-]?[0-9]+
 T_REAL      [0-9]+\.?|[0-9]*\.[0-9]+ 
