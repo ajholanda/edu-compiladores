@@ -2,6 +2,7 @@
 
 ## Recursos Didáticos
 
+- [Trabalho](https://drive.google.com/file/d/13F63kH_9GnSd1qQizTiVqGjoOdSKClN3/view?usp=sharing).
 - `yacc`: [exercícios](https://drive.google.com/file/d/1oLPe0OWjDwQbWOt0_THAbiwn3MoAZhIE/view?usp=sharing), 
 [slides](https://drive.google.com/file/d/1nkz2ERd3uo0wONgNEiYpa7niGEi3dEs-/view?usp=sharing).
 - `lex`: [exercícios](https://drive.google.com/file/d/1nUIRZ4Wdv9Y3K-DrIPcgCxeZ0PT3npQQ/view?usp=sharing), [slides](https://drive.google.com/file/d/1Sf4hlcPEDvNH3PQez9--1zATqZLPjZSl/view?usp=sharing).
@@ -49,7 +50,8 @@ $ docker build --rm . -t bison-image
 $ docker run --rm -it --entrypoint bash bison-image
 ```
 
-A instância contém todos os programas necessários para compilação dos arquivos.
+A instância contém todos os programas necessários para compilação dos arquivos
+que são copiados para os diretórios `/home/flex` e `/home/bison`.
 
 # Dicas
 
