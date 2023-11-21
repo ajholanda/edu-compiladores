@@ -2,6 +2,7 @@
 
 ## Recursos Didáticos
 
+- [Geração de código](https://drive.google.com/file/d/1PJQEGKYzRGQhMiILzAV3wZpmvsw9L47s/view?usp=sharing).
 - [Trabalho](https://drive.google.com/file/d/13F63kH_9GnSd1qQizTiVqGjoOdSKClN3/view?usp=sharing).
 - `yacc`: [exercícios](https://drive.google.com/file/d/1oLPe0OWjDwQbWOt0_THAbiwn3MoAZhIE/view?usp=sharing), 
 [slides](https://drive.google.com/file/d/1nkz2ERd3uo0wONgNEiYpa7niGEi3dEs-/view?usp=sharing).
