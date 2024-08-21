@@ -194,6 +194,39 @@
  \end{tabular}
 \end{frame}
 
+\begin{frame}{Expressão regular}{Autômato finito}
+
+\begin{itemize}
+  \item Operadores ``{\tt <=}'' e ``{\tt <}''\\ 
+\end{itemize}
+
+\usetikzlibrary{arrows.meta,automata,positioning}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,>={Stealth[round]},
+every state/.style={draw=blue!50,very thick,fill=blue!20},bend angle=45]
+\node[state,initial] (q0) {$0$};
+\node[state] (q1) [right=of q0] {$1$};
+\node[state,accepting] (q2) [right=of q1] {$2$};
+\node[state,accepting] (q3) [below=of q2] {$3$};
+%% Returns.
+\node [right=of q2] {\small\tt \{ return LE; \}};
+\node [below right=of q3] {\small\tt \{ ungetc(c, input); return EQ; \}};
+%% Paths.
+\path[->] 
+    (q0) edge node [above] {$<$} (q1)
+    (q1) edge node [above] {$=$} (q2)
+    (q1) edge [bend right] node [above,right] {\bf\small other} (q3)
+;
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Expressão regular}{Autômato finito, cont.}
+
+  Reconhecimento de Palavras-chave e identificadores
+
+\end{frame}
+
+
 \subsection{Usando {\tt flex}}
 \frame{\tableofcontents[currentsubsection]}
 
@@ -259,19 +292,18 @@ $ gcc -o arquivo.exe arquivo.yy.c
 \subsection{Exemplo}
 \frame{\tableofcontents[currentsubsection]}
 
-\begin{frame}{Exemplo - especificação flex}{$\mu$Pascal}
+\begin{frame}{Exemplo - especificação flex}{$\mu$C}
   \center
   \begin{tabular}{rrl}
     {\bf if} & $\rightarrow$ & {\tt if} \\
-    {\bf then} & $\rightarrow$ & {\tt then} \\
     {\bf else} & $\rightarrow$ & {\tt else} \\
-    {\bf relop} & $\rightarrow$ & {\tt <} | {\tt <=} | {\tt >} | {\tt >=} | {\tt =} | {\tt <>} \\
+    {\bf relop} & $\rightarrow$ & {\tt <} | {\tt <=} | {\tt >} | {\tt >=} | {\tt =} | {\tt !=} \\
     {\bf id}    & $\rightarrow$ & {\bf letra}({\bf letra}|{\bf dígito})* \\
     {\bf num}    & $\rightarrow$ & {\bf dígito}+(.{\bf dígito})? \\
    \end{tabular}
  \end{frame}
 
-\begin{frame}{Exemplo - especificação flex, cont.}{$\mu$Pascal}
+\begin{frame}{Exemplo - especificação flex, cont.}{$\mu$C}
   \small
   \center
   \begin{tabular}{c|c|c}
@@ -282,7 +314,6 @@ $ gcc -o arquivo.exe arquivo.yy.c
     \midrule
     {\bf ws} &  --      & -- \\
     {\tt if}   & {\tt IF}  & -- \\
-    {\tt then}   & {\tt THEN}  & -- \\
     {\tt else}   & {\tt ELSE}  & -- \\
     {\bf id}   & {\tt ID}  & ponteiro para entrada na tabela \\
     {\bf num}   & {\tt NUM}  & ponteiro para entrada na tabela \\
@@ -291,7 +322,7 @@ $ gcc -o arquivo.exe arquivo.yy.c
     {\tt >}   & {\tt RELOP} & {\tt GT} \\
     {\tt >=}   & {\tt RELOP} & {\tt GE} \\
     {\tt =}   & {\tt RELOP} & {\tt EQ} \\
-    {\tt <>}   & {\tt RELOP} & {\tt NE} \\
+    {\tt !=}   & {\tt RELOP} & {\tt NE} \\
     \bottomrule
    \end{tabular}
  \end{frame}
@@ -303,14 +334,13 @@ $ gcc -o arquivo.exe arquivo.yy.c
     ID, IF, THEN, ELSE, GE, GT, LE, LT, EQ, NE, NUM, RELOP
 %}
  /* definições regulares - regras de tradução */
-delim                [ \t\n]
-ws                   {delim}+ /* espaço em branco */
-letter               [A-Za-z] /* letra */
+ws                   [ \t\n]+
+letter               [A-Za-z_]
 digit                [0-9]
-id                   (letter)((letter)|(digit))*
-num                  (digit)+(\. (digit)+)?
+id                   {letter}({letter}|{digit})*
+num                  {digit}+(\. {digit}+)?
 %%
-{ws}                /* nada é retornado ao parser */
+{ws}                { /* espaço em branco, nada é retornado ao parser */ }
 if                  {return IF;}
 then                {return THEN;}
 else                {return ELSE;}
@@ -321,7 +351,7 @@ else                {return ELSE;}
 ">"                 {yyval = GT; return RELOP;}
 ">="                {yyval = GE; return RELOP;}
 "="                 {yyval = EQ; return RELOP;}
-"<>"                {yyval = NE; return RELOP;}
+"!="                {yyval = NE; return RELOP;}
 %%
 /* procedimentos auxiliares */
 install_id() { ... }
