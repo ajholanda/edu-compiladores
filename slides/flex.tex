@@ -102,6 +102,35 @@
   de símbolos.
 \end{frame}
 
+\begin{frame}{Exploração léxica -- leitura}{\it scanning\/}
+
+\textvisiblespace\textvisiblespace\textvisiblespace E=m*c**2\\
+
+\bigskip
+
+\begin{tikzpicture}
+    [%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        box/.style={rectangle,draw=black, ultra thick, minimum size=1cm},
+    ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \node[text=blue] at (-1,4) {\it buffer 1\/};
+    \foreach \x/\y in {0/{\ }, 1/{\ },2/{\ },3/{E},4/{=},5/{m},6/{*},7/{\tt EOF}}
+        \node[box] at (\x,3){\y};
+
+    \node[text=blue] at (-1,1) {\it buffer 2\/};
+    \foreach \x/\y in {0/{c}, 1/{*},2/{*},3/{2},4/{\tt EOF},5/{\ },6/{\ },7/{\tt EOF}}
+        \node[box] at (\x,0){\y};
+
+  \draw[->,very thick] (1,1.2) --  node[above,yshift=2mm]{\it begin\/} (1,.7);
+  \draw[->,very thick] (3,1.2) --  node[above,yshift=2mm]{\it forward\/} (3,.7);
+
+\end{tikzpicture}
+
+\medskip
+
+{\small Obs: O {\it buffer} é geralmente do tamanho de um bloco de disco.}
+
+\end{frame}
 
 \begin{frame}{Vantagens da separação do analisador sintático}
 
