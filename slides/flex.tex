@@ -200,7 +200,6 @@
   \item Operadores ``{\tt <=}'' e ``{\tt <}''\\ 
 \end{itemize}
 
-\usetikzlibrary{arrows.meta,automata,positioning}
 \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,>={Stealth[round]},
 every state/.style={draw=blue!50,very thick,fill=blue!20},bend angle=45]
 \node[state,initial] (q0) {$0$};
@@ -222,7 +221,24 @@ every state/.style={draw=blue!50,very thick,fill=blue!20},bend angle=45]
 
 \begin{frame}[fragile]{Expressão regular}{Autômato finito, cont.}
 
-  Reconhecimento de Palavras-chave e identificadores
+  \begin{itemize}
+    \item Reconhecimento de palavras-chave e identificadores
+  \end{itemize}
+
+\begin{tikzpicture}[shorten >=1pt,node distance=2.5cm,on grid,>={Stealth[round]},
+every state/.style={draw=blue!50,very thick,fill=blue!20},bend angle=45]
+  \node[state,initial] (q0) {$4$};
+  \node[state] (q1) [right=of q0] {$5$};
+  \node[state,accepting] (q2) [right=of q1] {$6$};
+  %% Returns.
+  \node [below right=of q2] {\scriptsize\tt \{ ungetc(c, input); install\_id(lexema); \}};
+  %% Paths.
+  \path[->] 
+      (q0) edge node [above] {\bf letra} (q1)
+      (q1) edge node [above] {\bf other} (q2)
+      (q1) edge [loop above] node [above] {{\bf\small letra} ou {\bf\small dígito}} (q1)
+  ;
+\end{tikzpicture}
 
 \end{frame}
 
