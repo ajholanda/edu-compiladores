@@ -58,7 +58,7 @@
     {\bf relop} & {\tt >} ou {\tt <} ou {\tt >=} ou {\tt <=} ou {\tt !=}
                   ou {\tt ==} & >, <, >=, <=, !=, == \\
     {\bf id} & letra seguida por letras e dígitos & valor, printf, x, i \\
-    {\bf num} & qualquer constante numérica & 3.14, 5, .7 \\
+    {\bf num} & qualquer constante numérica & 3.14, 5 \\
     {\bf literal} & quaisquer caracteres entre ``s & {\tt "Valor \%d"} \\
     \bottomrule
   \end{tabular}
@@ -122,7 +122,7 @@
         \node[box] at (\x,0){\y};
 
   \draw[->,very thick] (1,1.2) --  node[above,yshift=2mm]{\it begin\/} (1,.7);
-  \draw[->,very thick] (3,1.2) --  node[above,yshift=2mm]{\it forward\/} (3,.7);
+  \draw[->,very thick] (3,1.2) --  node[above,yshift=2mm]{\it p\/} (3,.7);
 
 \end{tikzpicture}
 
@@ -237,7 +237,7 @@ every state/.style={draw=blue!50,very thick,fill=blue!20},bend angle=45]
 \node[state,accepting] (q3) [below=of q2] {$3$};
 %% Returns.
 \node [right=of q2] {\small\tt \{ return LE; \}};
-\node [below right=of q3] {\small\tt \{ ungetc(c, input); return EQ; \}};
+\node [below right=of q3] {\small\tt \{ {\color{gray}p--;} return EQ; \}};
 %% Paths.
 \path[->] 
     (q0) edge node [above] {$<$} (q1)
@@ -260,7 +260,7 @@ every state/.style={draw=blue!50,very thick,fill=blue!20},bend angle=45]
   \node[state] (q1) [right=of q0] {$5$};
   \node[state,accepting] (q2) [right=of q1] {$6$};
   %% Returns.
-  \node [below right=of q2] {\scriptsize\tt \{ ungetc(c, input); install\_id(lexema); \}};
+  \node [below right=of q2] {\scriptsize\tt \{ {\color{gray}p--;} install\_id(lexema); \}};
   %% Paths.
   \path[->] 
       (q0) edge node [above] {\bf letra} (q1)
@@ -376,7 +376,7 @@ $ gcc -o arquivo.exe arquivo.yy.c
  \tiny
 \begin{lstlisting}
 %{ /* declarações de constantes */
-    ID, IF, THEN, ELSE, GE, GT, LE, LT, EQ, NE, NUM, RELOP
+    ID, IF, ELSE, GE, GT, LE, LT, EQ, NE, NUM, RELOP
 %}
  /* definições regulares - regras de tradução */
 ws                   [ \t\n]+
@@ -387,7 +387,6 @@ num                  {digit}+(\. {digit}+)?
 %%
 {ws}                { /* espaço em branco, nada é retornado ao parser */ }
 if                  {return IF;}
-then                {return THEN;}
 else                {return ELSE;}
 {id}                {yyval = install_id(); return ID;}
 {num}               {yyval = install_num(); return NUM;}
