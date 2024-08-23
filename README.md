@@ -2,7 +2,7 @@
 
 ## Recursos Didáticos
 
-- `lex`: [exercícios](https://drive.google.com/file/d/1ezBGztlw_yQxL1XoRgPD2VRj6eFsWUf3/view?usp=sharing), slides.
+- `lex`: [exercícios](https://drive.google.com/file/d/1ezBGztlw_yQxL1XoRgPD2VRj6eFsWUf3/view?usp=sharing), [slides](https://drive.google.com/file/d/1CUL6LCQYLW67DGgwWRcYI3-QaQmaPLuU/view?usp=sharing).
 
 ## Setup
 
