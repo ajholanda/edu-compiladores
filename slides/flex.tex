@@ -344,7 +344,7 @@ $ gcc -o arquivo.exe arquivo.yy.c
     {\bf else} & $\rightarrow$ & {\tt else} \\
     {\bf relop} & $\rightarrow$ & {\tt <} | {\tt <=} | {\tt >} | {\tt >=} | {\tt =} | {\tt !=} \\
     {\bf id}    & $\rightarrow$ & {\bf letra}({\bf letra}|{\bf dígito})* \\
-    {\bf num}    & $\rightarrow$ & {\bf dígito}+(.{\bf dígito})? \\
+    {\bf num}    & $\rightarrow$ & {\bf dígito}+(.{\bf dígito}*)? \\
    \end{tabular}
  \end{frame}
 
