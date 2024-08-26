@@ -11,7 +11,6 @@ int lines = 0; // linhas
 %}
 
 %%
-// selecionar somente palavras
 [a-zA-Z]+    { words++; chars += strlen(yytext); }
 \n           { chars++; lines++; }
 .            { chars++; }
