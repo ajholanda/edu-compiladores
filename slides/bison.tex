@@ -339,6 +339,12 @@ expr    : expr '+' expr     { $$ = $1 + $3; }
 
   \small
 
+\note{
+  Uma gramática ambígua tende a ser menor e mais fácil de ler.
+  Por isso, o {\tt yacc} fornece um mecanismo para usá-la.
+  \cite{holub}. (pg 182)
+}
+
 \lstset{emph={left},emphstyle=\color{red}\bf}
 \begin{lstlisting}
 // solução usando %left
@@ -438,6 +444,10 @@ expr    : expr '+' expr     { $$ = $1 + $3; }
   \item John Levine.
     \href{https://www.oreilly.com/library/view/flex-bison/9780596805418/}{flex
       \& bison}. Editora O'Reilly, 2009.
+
+  \item Allen I.\ Hollub.
+   \href{https://holub.com/compiler/}{Compiler Design in C}.
+    Prentice-Hall, 1990.
 
   \item {\tt Bison} home page {\tt http://www.gnu.org/software/bison/}, Free
     Software Foundation.
