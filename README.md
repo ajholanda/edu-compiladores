@@ -51,6 +51,20 @@ $ docker run --rm -it --entrypoint bash bison-image
 A instância contém todos os programas necessários para compilação dos arquivos
 que são copiados para os diretórios `/home/flex` e `/home/bison`.
 
+## Vagrant
+
+Execute os comandos (bash ou PowerShell) a seguir para criar uma
+máquina virtual [Vagrant](https://www.vagrantup.com/) 
+com os programas e códigos usados na disciplina:
+
+```
+$ vagrant up
+$ vagrant ssh  # Se pedir senha digite "vagrant".
+$ cd compiladores
+```
+
+O conteúdo deste repositório é mapeado para o diretório `compiladores`.
+
 # Dicas
 
 - [Guia de instalação do Subsistema Windows para Linux para Windows 10](https://docs.microsoft.com/pt-br/windows/wsl/install-win10).
