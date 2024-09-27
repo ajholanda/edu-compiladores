@@ -254,7 +254,11 @@ factor : '(' expr ')'      { $$ = $2; }
 \end{column}\scriptsize
 \begin{column}{.53\textwidth}
 \begin{lstlisting}
-% token DIGIT
+%union {
+        int d;
+}
+%token <d> DIGIT
+%type  <d> expr term factor
 
 %%
 line   : expr '\n'      {
