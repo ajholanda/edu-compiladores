@@ -138,39 +138,39 @@ factor : '(' expr ')'      { $$ = $2; }
   \begin{tikzpicture}[>=latex]
     \node (two) {{\tt 2}};
     \node (plus) [right of=two] {{\tt +}};
-    \node (three) [right of=plus] {{\tt 3}};
-    \node (times) [right of=three] {{\tt *}};
-    \node (five) [right of=times] {{\tt 5}};
-    \node (nl) [right of=five] {{\tt '$\backslash$n'}};
-    \only<-3>{
+    \node (one) [right of=plus] {{\tt 1}};
+    \node (times) [right of=one] {{\tt *}};
+    \node (three) [right of=times] {{\tt 3}};
+    \node (nl) [right of=three] {{\tt '$\backslash$n'}};
+    \only<-5>{
       \node (pointer) [below of=two] {};
       \draw[->] (pointer) -- (two);
     }
-    \only<4-6>{
+    \only<6>{
       \node (pointer) [below of=plus] {};
       \draw[->] (pointer) -- (plus);
     }
-    \only<7>{
-      \node (pointer) [below of=three] {};
-      \draw[->] (pointer) -- (three);
+    \only<7-9>{
+      \node (pointer) [below of=one] {};
+      \draw[->] (pointer) -- (one);
     }
-    \only<8-9>{
+    \only<10>{
       \node (pointer) [below of=times] {};
       \draw[->] (pointer) -- (times);
     }
-    \only<10-12>{
-      \node (pointer) [below of=five] {};
-      \draw[->] (pointer) -- (five);
+    \only<11-12>{
+      \node (pointer) [below of=three] {};
+      \draw[->] (pointer) -- (three);
     }
     \only<13-15>{
       \node (pointer) [below of=nl] {};
       \draw[->] (pointer) -- (nl);
     }
     \only<13>{
-      \node (pointer) [below of=three] {$15$};
+      \node (pointer) [below of=one] {$3$};
     }
     \only<14->{
-      \node (pointer) [below of=three] {$17$};
+      \node (pointer) [below of=one] {$5$};
     }
   \end{tikzpicture}\bigskip
 
