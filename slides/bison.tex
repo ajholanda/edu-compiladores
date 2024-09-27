@@ -312,10 +312,10 @@ expr    : expr '+' expr     { $$ = $1 + $3; }
   \begin{tikzpicture}[>=latex]
     \node (two) {{\tt 2}};
     \node (plus) [right of=two] {{\tt +}};
-    \node (three) [right of=plus] {{\tt 3}};
-    \node (times) [right of=three] {{\tt *}};
-    \node (five) [right of=times] {{\tt 5}};
-    \node (nl) [right of=five] {{\tt '$\backslash$n'}};
+    \node (one) [right of=plus] {{\tt 1}};
+    \node (times) [right of=one] {{\tt *}};
+    \node (three) [right of=times] {{\tt 3}};
+    \node (nl) [right of=three] {{\tt '$\backslash$n'}};
     \only<-3>{
       \node (pointer) [below of=two] {};
       \draw[->] (pointer) -- (two);
