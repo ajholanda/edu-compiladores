@@ -326,18 +326,18 @@ expr    : expr '+' expr     { $$ = $1 + $3; }
   \end{tikzpicture}\bigskip
 
   \scriptsize
-  \begin{tabular}[h]{r|l|l|c|l}
+  \begin{tabular}[h]{r|l|c|l}
     \toprule
-    & \hfil pilha &\hfil símbolo & entrada &\hfil ação \\
+    & \hfil pilha & entrada &\hfil ação \\
     \midrule
-    (1) & 0 &  &\hfill {\bf digit} + {\bf digit} * {\bf digit}\$& desloca \\
+    (1) &  &\hfill {\bf digit} + {\bf digit} * {\bf digit}\$& desloca \\
     \only<2->{
-    (2) & 0 1 &   {\bf digit} &\hfill + {\bf digit} * {\bf digit}\$ & reduz: $E\rightarrow$ {\bf digit} \\
+    (2) &  {\bf digit} &\hfill + {\bf digit} * {\bf digit}\$ & reduz: $E\rightarrow$ {\bf digit} \\
     }
     \only<3->{
-    (3) & 0 6 &   $E$ &\hfill + {\bf digit} * {\bf digit}\$ & {\large\color{red}conflito} \\
+    (3) & $E$ &\hfill + {\bf digit} * {\bf digit}\$ & {\large\color{red}conflito} \\
     }
-    & & & &\\
+     & & &\\
    \bottomrule
   \end{tabular}
 \end{frame}
