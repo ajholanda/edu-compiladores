@@ -4,6 +4,7 @@
 
 - [Trabalho](https://drive.google.com/file/d/1P-tUrxOQxKsrR9_CErAoHeCkUPpIrgYL/view?usp=sharing).
 - `yacc`: [exercícios](https://drive.google.com/file/d/1GtXfOdvqOzy_gmTOEf3BGxLlXTaFIYad/view?usp=sharing), [slides](https://drive.google.com/file/d/1i6D5t2Rfn-H-l7-Dk6HVpaDvp37O9t3E/view?usp=sharing).
+- `lex`: [exercícios](https://drive.google.com/file/d/1ezBGztlw_yQxL1XoRgPD2VRj6eFsWUf3/view?usp=sharing), [slides](https://drive.google.com/file/d/1CUL6LCQYLW67DGgwWRcYI3-QaQmaPLuU/view?usp=sharing).
 
 ## Setup
 
