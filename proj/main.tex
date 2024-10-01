@@ -126,6 +126,8 @@ As seguintes espressões exitem em \lang:
 \item Chamadas de função.
 \end{itemize}
 
+\paragraph{Comentários.} Todos os comentários devem começar com "//".
+
 \pagebreak
 A Listagem~\ref{lst:fat} mostra o código para o cálculo 
 do fatorial como um exemplo de aplicação da linguagem 
@@ -135,6 +137,7 @@ do fatorial como um exemplo de aplicação da linguagem
     label=lst:fat,
     caption={Exemplo de código usando a linguagem \lang{}.}
 ]
+// fat.xyz
 fn fatorial(n i64) {
         var
            i : i64 = 1,
@@ -156,7 +159,7 @@ fn main() {
            i : i64 = 3,
            f : i64 = 0;
     
-        f = fat(i);
+        f = fatorial(i);
 
         return 0;
 }
