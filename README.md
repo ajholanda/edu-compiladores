@@ -78,5 +78,6 @@ do processo. Neste livro é descrito com detalhes o surgimento do `lex` e `yacc`
 - [Mingw](https://www.mingw-w64.org/): projeto contendo o `gcc` para Windows. Porém, qualquer compilador C pode ser usado, dentre eles: [`tcc`](https://bellard.org/tcc/) e
 [`clang`](https://clang.llvm.org/).
 - [winflexbison](https://github.com/lexxmark/winflexbison/releases): projeto de portabilidade do `flex` e `bison` para Windows.
+- [Compiler Explorer](https://godbolt.org/): gera código para diversas plataformas.
 
 ---
