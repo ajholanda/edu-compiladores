@@ -66,7 +66,7 @@ O conteúdo deste repositório é mapeado para o diretório `compiladores`.
 
 # Dicas
 
-- [Guia de instalação do Subsistema Windows para Linux para Windows 10](https://docs.microsoft.com/pt-br/windows/wsl/install-win10).
+- [Guia de instalação do Subsistema Windows para Linux para Windows](https://learn.microsoft.com/pt-br/windows/wsl/install).
 - Como instalar o [Windows Terminal](https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701) para executar comandos `Unix`-like com mais facilidade.
 -  Brian Kernighan, [UNIX: A History and a Memoir](https://www.amazon.com.br/UNIX-History-English-Brian-Kernighan-ebook/dp/B07ZQHX3R1):
 Livro que narra a história do desenvolvimento do Sistema Operacional `Unix` por quem participou ativamente
