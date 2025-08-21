@@ -11,7 +11,7 @@ int lines = 0; // linhas
 %}
 
 %%
-[a-zA-Z]+    { words++; chars += strlen(yytext); }
+[0-9a-zA-Z]+    { words++; chars += strlen(yytext); }
 \n           { chars++; lines++; }
 .            { chars++; }
 
