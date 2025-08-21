@@ -1,7 +1,7 @@
 $script = <<-SCRIPT
 echo Provisioning...
-apt-get update
-apt-get install -y bison gdb gcc flex make vim
+DEBIAN_FRONTEND=noninteractive apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y bison gdb gcc flex make vim
 SCRIPT
 
 Vagrant.configure("2") do |config|
