@@ -29,7 +29,7 @@ int install_num(char *text, enum type_enum type) {
             break;
         case FLOAT:
             f = atof(text);
-            printf("ponto flutuante: %f", f);
+            printf("ponto flutuante: %f\n", f);
             break;
         default:
         return 1;
