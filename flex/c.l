@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     }
 
     yylex();
-    printf("%d vogais, %d consoantes", vowels, cons);
+    printf("%d vogais, %d consoantes\n", vowels, cons);
 
     return 0;
 }
