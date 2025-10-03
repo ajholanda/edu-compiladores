@@ -1,0 +1,93 @@
+\begin{frame}{Computação de conjuntos $FOLLOW$}
+
+{\bf Terminal}\\
+Se $a$ é um terminal, então $FOLLOW(a) = \{a\}$.\bigskip
+
+{\bf Vazio}\\
+$FOLLOW(\epsilon) = \{\epsilon\}$.\bigskip
+
+{\bf Não-terminal (Variável)}\\
+\begin{enumerate}
+ \item Se $X$ é uma variável e $X \rightarrow Y_1 Y_2 ... Y_k$ é uma produção, 
+      então tudo que está em $FOLLOW(Y_1)$ está em $FIRST(X)$, exceto $\epsilon$. 
+ \item Se $Y_1$ pode derivar $\epsilon$, então tudo que está em $FOLLOW(Y_2)$ 
+       também está em $FOLLOW(X)$, exceto $\epsilon$. 
+\item Continuar esse processo até que um $Y_i$ não possa 
+      derivar $\epsilon$ ou até que todos os $Y_i$ tenham sido processados. 
+\item Se todos os $Y_i$ podem derivar $\epsilon$, então adicionar $\epsilon$ a $FOLLOW(X)$.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Computação de conjuntos $FOLLOW$}{Exemplo}
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \begin{enumerate}
+              \item $E \rightarrow T S$
+
+              \item $S \rightarrow + T S\ |\ \epsilon$
+
+              \item $T \rightarrow F U\ |\ \epsilon$
+
+              \item $U \rightarrow * F U\ |\ \epsilon$
+
+              \item $F \rightarrow ( E )\ |\ int$
+            \end{enumerate}
+        \end{column}    
+        \pause
+        \begin{column}{0.7\textwidth}
+            \begin{itemize}
+                \item $FOLLOW(F) = \{(, int, \epsilon\}$
+                \item $FOLLOW(U) = \{*, \epsilon\}$
+                \item $FOLLOW(T) = FIRST(F) \cup {\epsilon} = \{(, int, \epsilon\}$ 
+                \item $FOLLOW(S) = \{+, \epsilon\}$
+                \item $FOLLOW(E) =  FIRST(T) = \{(, int, \underline{\epsilon}\} \cup FIRST(S) = \{(, int, +, \epsilon\}$
+            \end{itemize}
+        \end{column}    
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Computação de conjuntos $FOLLOW$}
+
+    $FOLLOW(A)$ é o conjunto de terminais que podem aparecer 
+depois do não-teminal $A$, incluindo o símbolo de fim de entrada
+$\$$, se $A$ pode ser o último símbolo em alguma derivação.\bigskip
+
+{\bf Regras para computar $FOLLOW$}:\medskip
+
+ \begin{enumerate}
+    \item Se $S$ é o símbolo inicial então $FOLLOW(S)=\{\$\}$.
+    \item Se $A \rightarrow \alpha B\beta$ então adicionar FOLLOW($\beta$) (exceto $\{\epsilon\}$) a $FOLLOW(B)$.
+    \item Se $A \rightarrow \alpha B$ ou $A \rightarrow \alpha B\beta$ onde $\epsilon \in FOLLOW(\beta)$, 
+            então adicionar $FOLLOW(A)$ a $FOLLOW(B)$.
+ \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Computação de conjuntos $FOLLOW$}{Exemplo}
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \begin{enumerate}
+              \item $E \rightarrow T S$
+
+              \item $S \rightarrow + T S\ |\ \epsilon$
+
+              \item $T \rightarrow F U\ |\ \epsilon$
+
+              \item $U \rightarrow * F U\ |\ \epsilon$
+
+              \item $F \rightarrow ( E )\ |\ int$
+            \end{enumerate}
+        \end{column}    
+        \pause
+        \begin{column}{0.7\textwidth}
+            \begin{itemize}
+                \item $FOLLOW(E) = \{\$, )\}$
+                \item $FOLLOW(S) = \{\$, )\}$
+                \item $FOLLOW(T) = \{+, \$, )\}$
+                \item $FOLLOW(U) = \{+, \$, )\}$
+                \item $FOLLOW(F) = \{*, + \$, )\}$
+            \end{itemize}
+        \end{column}    
+    \end{columns}
+\end{frame}
