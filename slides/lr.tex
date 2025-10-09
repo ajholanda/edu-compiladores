@@ -37,11 +37,11 @@ $FIRST(\epsilon) = \{\epsilon\}$.\bigskip
         \pause
         \begin{column}{0.7\textwidth}
             \begin{itemize}
-                \item $FOLLOW(F) = \{(, int, \epsilon\}$
-                \item $FOLLOW(U) = \{*, \epsilon\}$
-                \item $FOLLOW(T) = FIRST(F) \cup {\epsilon} = \{(, int, \epsilon\}$ 
-                \item $FOLLOW(S) = \{+, \epsilon\}$
-                \item $FOLLOW(E) =  FIRST(T) = \{(, int, \underline{\epsilon}\} \cup FIRST(S) = \{(, int, +, \epsilon\}$
+                \item $FIRST(F) = \{(, int\}$
+                \item $FIRST(U) = \{*, \epsilon\}$
+                \item $FIRST(T) = FIRST(F) \cup \{\epsilon\} = \{(, int, \epsilon\}$
+                \item $FIRST(S) = \{+, \epsilon\}$
+                \item $FIRST(E) =  FIRST(T) = \{(, int, \underline{\epsilon}\} \cup FIRST(S) = \{(, int, +, \epsilon\}$
             \end{itemize}
         \end{column}    
     \end{columns}
