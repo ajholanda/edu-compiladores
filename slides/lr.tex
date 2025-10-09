@@ -57,7 +57,7 @@ $\$$, se $A$ pode ser o último símbolo em alguma derivação.\bigskip
 
  \begin{enumerate}
     \item Se $S$ é o símbolo inicial então $FOLLOW(S)=\{\$\}$.
-    \item Se $A \rightarrow \alpha B\beta$ então adicionar FOLLOW($\beta$) (exceto $\{\epsilon\}$) a $FOLLOW(B)$.
+    \item Se $A \rightarrow \alpha B\beta$ então adicionar FIRST($\beta$) (exceto $\{\epsilon\}$) a $FOLLOW(B)$.
     \item Se $A \rightarrow \alpha B$ ou $A \rightarrow \alpha B\beta$ onde $\epsilon \in FOLLOW(\beta)$, 
             então adicionar $FOLLOW(A)$ a $FOLLOW(B)$.
  \end{enumerate}
