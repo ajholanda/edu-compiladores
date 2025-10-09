@@ -1,25 +1,25 @@
-\begin{frame}{Computação de conjuntos $FOLLOW$}
+\begin{frame}{Computação de conjuntos $FIRST$}
 
 {\bf Terminal}\\
-Se $a$ é um terminal, então $FOLLOW(a) = \{a\}$.\bigskip
+Se $a$ é um terminal, então $FIRST(a) = \{a\}$.\bigskip
 
 {\bf Vazio}\\
-$FOLLOW(\epsilon) = \{\epsilon\}$.\bigskip
+$FIRST(\epsilon) = \{\epsilon\}$.\bigskip
 
 {\bf Não-terminal (Variável)}\\
 \begin{enumerate}
  \item Se $X$ é uma variável e $X \rightarrow Y_1 Y_2 ... Y_k$ é uma produção, 
-      então tudo que está em $FOLLOW(Y_1)$ está em $FIRST(X)$, exceto $\epsilon$. 
- \item Se $Y_1$ pode derivar $\epsilon$, então tudo que está em $FOLLOW(Y_2)$ 
-       também está em $FOLLOW(X)$, exceto $\epsilon$. 
+      então tudo que está em $FIRST(Y_1)$ está em $FIRST(X)$, exceto $\epsilon$. 
+ \item Se $Y_1$ pode derivar $\epsilon$, então tudo que está em $FIRST(Y_2)$ 
+       também está em $FIRST(X)$, exceto $\epsilon$. 
 \item Continuar esse processo até que um $Y_i$ não possa 
       derivar $\epsilon$ ou até que todos os $Y_i$ tenham sido processados. 
-\item Se todos os $Y_i$ podem derivar $\epsilon$, então adicionar $\epsilon$ a $FOLLOW(X)$.
+\item Se todos os $Y_i$ podem derivar $\epsilon$, então adicionar $\epsilon$ a $FIRST(X)$.
 \end{enumerate}
 
 \end{frame}
 
-\begin{frame}{Computação de conjuntos $FOLLOW$}{Exemplo}
+\begin{frame}{Computação de conjuntos $FIRST$}{Exemplo}
     \begin{columns}
         \begin{column}{0.3\textwidth}
             \begin{enumerate}
