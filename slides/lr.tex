@@ -91,3 +91,22 @@ $\$$, se $A$ pode ser o último símbolo em alguma derivação.\bigskip
         \end{column}    
     \end{columns}
 \end{frame}
+
+\begin{frame}{Analisador LR(0)}{Construção do autômato}
+
+
+ {\bf Fecho ({\it closure\/})} dos conjuntos de itens\\\bigskip
+
+Se $I$ é um conjunto de itens da gramática $G$, então o
+$CLOSURE(I)$ é o conjunto de itens construído de $I$
+pela aplicação de 2 regras:
+
+	\begin{enumerate}
+		\item Inicialmente, adicionar cada item de $I$ ao $CLOSURE(I)$.
+		\item Se $A\rightarrow \alpha B\beta$ está no $CLOSURE(I)$ e
+		$B\rightarrow \gamma$ ao $CLOSURE(I)$, se ainda não estiver.
+		Aplicar essa regra até que não haja novos itens a serem
+		adicionados ao $CLOSURE(I)$.
+	\end{enumerate}
+
+\end{frame}
