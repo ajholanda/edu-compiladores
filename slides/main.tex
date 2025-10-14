@@ -32,6 +32,15 @@
             citecolor = blue,%
             anchorcolor = blue}
 
+% --- Comando para adicionar numeracao de pagina ---
+\setbeamertemplate{footline}{
+  \hfill%
+  \usebeamercolor{page number in head/foot}%
+ \usebeamerfont{page number in head/foot}%
+  \insertframenumber\,/\,\inserttotalframenumber
+  \hspace*{1em} % Espaco antes da borda direita
+}
+
 \begin{document}
 \author{Adriano J. Holanda, Zhao Liang}
 \date{2025-08-19}
