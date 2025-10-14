@@ -103,10 +103,64 @@ pela aplicação de 2 regras:
 
 	\begin{enumerate}
 		\item Inicialmente, adicionar cada item de $I$ ao $CLOSURE(I)$.
-		\item Se $A\rightarrow \alpha B\beta$ está no $CLOSURE(I)$ e
-		$B\rightarrow \gamma$ ao $CLOSURE(I)$, se ainda não estiver.
+		\item Se $A\rightarrow \alpha\ .\ B\beta$ está iem $CLOSURE(I)$ e
+		$B\rightarrow \gamma$ ao $CLOSURE(I)$ é uma regra da gramática, 
+		então adicionar o item $B\rightarrow\ .\ \gamma$ a $CLOSURE(I)$.
 		Aplicar essa regra até que não haja novos itens a serem
 		adicionados ao $CLOSURE(I)$.
 	\end{enumerate}
 
 \end{frame}
+
+% Thain
+\begin{frame}[fragile]{Analisador SLR}{{\it Parser simple} LR (SLR)}
+
+{\bf Tabela para a criação do analisador SLR}\bigskip
+
+	Dada uma gramática $G$ e um autômato correspondente LR(0),
+	criar as tabelas de $ACTION(s,a)$ e $GOTO(s,A)$ para todos
+	os estados $s$, terminais $a$ e não-terminais em $G$.\bigskip
+
+\lstset{mathescape=true
+	,morekeywords={goto,reduce,shift}
+	,basicstyle=\small}
+\begin{lstlisting}
+Para cada estado s:
+   Para cada item $A \rightarrow \alpha\ .\ B\beta$:
+     $ACTION(s,a) = $ desloca shift para o estado $t$ de acordo com  LR(0)
+   Para cada item $A\rightarrow \alpha\ .\ B\beta$:
+     $GOTO(s,B) = $ vai (goto) para o estado $t$ de acordo com  LR(0)
+   Para cada item $A \rightarrow \alpha$:
+     Para cada termina $a \in FOLLOW(A)$:
+       $ACTION(s,a) = $ reduz (reduce) pela regra $A \rightarrow \alpha$
+
+Todos os estados remanescentes são considerados erros de estados.
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Algoritmo do analisador sintático ({\it parser\/}) SLR}
+
+\lstset{mathescape=true
+	,morekeywords={goto,reduce,shift}}
+\begin{lstlisting}
+pilha $S$
+a $\leftarrow$ primeiro token da entrada
+
+Loop:
+  s $\rightarrow$ topo da pilha
+  Se $ACTION[s,a] =$ primeira produção:
+    Estado de aceitação
+  Senão se $ACTION[s,a] =$ shift $t$:
+    Empilhar estado $t$
+    $a \leftarrow$ próximo token da entrada
+  Senão se $ACTION[s,a] =$ reduce $A\rightarrow \beta$:
+    Desempilhar os estados correspondentes a $\beta$
+    $t \leftarrow$ topo da pilha
+    Empilhar $GOTO[t,A]$
+  Caso contrário:
+    Abortar a análise sintática
+\end{lstlisting}
+
+\end{frame}
+
