@@ -112,9 +112,9 @@ pela aplicação de 2 regras:
 
 \end{frame}
 
-% Thain
+% Thain, page 55
 \begin{frame}[fragile]{Analisador SLR}{{\it Parser simple} LR (SLR)}
-
+\small
 {\bf Tabela para a criação do analisador SLR}\bigskip
 
 	Dada uma gramática $G$ e um autômato correspondente LR(0),
@@ -123,11 +123,11 @@ pela aplicação de 2 regras:
 
 \lstset{mathescape=true
 	,morekeywords={goto,reduce,shift}
-	,basicstyle=\small}
+	,basicstyle=\footnotesize}
 \begin{lstlisting}
 Para cada estado s:
-   Para cada item $A \rightarrow \alpha\ .\ B\beta$:
-     $ACTION(s,a) = $ desloca shift para o estado $t$ de acordo com  LR(0)
+   Para cada item $A \rightarrow \alpha\ .\ a\beta$:
+     $ACTION(s,a) = $ desloca (shift) para o estado $t$ de acordo com  LR(0)
    Para cada item $A\rightarrow \alpha\ .\ B\beta$:
      $GOTO(s,B) = $ vai (goto) para o estado $t$ de acordo com  LR(0)
    Para cada item $A \rightarrow \alpha$:
@@ -139,28 +139,51 @@ Todos os estados remanescentes são considerados erros de estados.
 
 \end{frame}
 
-\begin{frame}[fragile]{Algoritmo do analisador sintático ({\it parser\/}) SLR}
+%% Aho3, pg 251
+\begin{frame}[fragile]{Algoritmo do analisador sintático ({\it parser\/}) LR}
 
 \lstset{mathescape=true
-	,morekeywords={goto,reduce,shift}}
+	,morekeywords={accept,goto,reduce,shift}
+	,basicstyle=\footnotesize}
 \begin{lstlisting}
 pilha $S$
-a $\leftarrow$ primeiro token da entrada
+$a\leftarrow$ primeiro token da entrada;
 
-Loop:
-  s $\rightarrow$ topo da pilha
-  Se $ACTION[s,a] =$ primeira produção:
-    Estado de aceitação
-  Senão se $ACTION[s,a] =$ shift $t$:
-    Empilhar estado $t$
-    $a \leftarrow$ próximo token da entrada
-  Senão se $ACTION[s,a] =$ reduce $A\rightarrow \beta$:
-    Desempilhar os estados correspondentes a $\beta$
-    $t \leftarrow$ topo da pilha
-    Empilhar $GOTO[t,A]$
-  Caso contrário:
-    Abortar a análise sintática
+while(1) {
+  s $\leftarrow$ estado no topo da pilha;
+  if ($ACTION[s,a] =$ shift $t$) {
+    Empilhar($S$, $t$);
+    $a \leftarrow$ próximo token da entrada;
+  } else if ($ACTION[s,a] =$ reduce $A\rightarrow \beta$) {
+    // Desempilhar os estados correspondentes a $\beta$
+    for(int i; i < $|\beta|$; i++) Desempilhar($S$);
+    $t \leftarrow$ topo da pilha;
+    Empilhar(S, $GOTO[t,A]$)
+  } else if ($ACTION[s,a]=$ accept)
+    break;
+  else {
+   // Chama rotina de recuperação de erro.
+   error_recovery("Erro de sintaxe");
+  }
+}
 \end{lstlisting}
 
 \end{frame}
 
+
+\begin{frame}{Fecho LR(1)}{$CLOSURE$ de LR(1)}
+
+	\begin{enumerate}
+		\item O {\it \bf lookahead} $L$ do núcleo (kernel) do estado inicial
+			é sempre $\{\$\}$.
+		\item Para um item do tipo $A\rightarrow \alpha\ .\ B, \{L\}$,
+			adicione regras do tipo $B\rightarrow\ .\ \gamma, \{L\}$.
+		\item Para um item do tipo $A\rightarrow\alpha\ .\ B\beta, \{L\}$,
+			adicione novos itens conforme as regras a seguir:
+		\begin{enumerate}
+			\item Se $\beta$ não pode produzir $\epsilon$, $L = FIRST(\beta)$;
+			\item Se $\beta$ pode produzir $\epsilon$, $L = FIRST(\beta) \cup \{L\}$.
+		\end{enumerate}
+	\end{enumerate}
+
+\end{frame}
