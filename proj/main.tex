@@ -1,0 +1,216 @@
+\documentclass{article}
+
+\usepackage[
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue,
+    menucolor=blue,
+    anchorcolor=blue,
+    filecolor=blue
+]{hyperref}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\usepackage{polyglossia}
+\setdefaultlanguage{brazil}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Listagem}
+\lstdefinestyle{xyzstyle}{
+    morekeywords={fn,return,var,while},
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=xyzstyle}
+
+\date{\today}
+\def\lang{{\sc XYZ}}
+
+\title{Compiladores: Projeto}
+\author{Zhao Liang}
+\date{2024-10-01}
+\begin{document}
+\maketitle
+
+\section{A linguagem \lang}
+
+\subsection{Descrição}
+
+\begin{itemize}
+\item Uma linguagem imperativa com a sintaxe parecida com a 
+linguagem C;
+\item Um programa \lang{} é uma sequência de definições de 
+funções sem recursividade e sem variáveis globais;
+\item A função principal, por onde é iniciada a execução 
+das instruções, chama-se {\tt main}, retorna um valor e 
+não possui parâmetros;
+\item Só há dois tipos de dados na linguagem, o tipo {\bf inteiro}
+	de 64 bits ({\tt i64}) e o tipo ponto flutuante de 
+	64 bits ({\tt f64}). Na avaliação Booleana o {\tt 0} é falso 
+	e qualquer número diferente de {\tt 0} corresponde ao Booleano verdadeiro.
+\item  Espaço em branco ` ', tabulação `$\backslash$t', 
+   retorno de ``carro'' `$\backslash$r' e nova linha
+`$\backslash$n' devem ser ignorados.
+\end{itemize}
+
+\paragraph{Restrições.} A linguagem é bem restrita, não havendo 
+vetores, ponteiros e módulos. Todo o programa é definido em um 
+único arquivo.
+
+\paragraph{Comentários.} Todos os comentários devem começar com "//".
+
+\subsection{Funções}
+
+\paragraph{Sintaxe}
+\begin{itemize}
+    \item Uma definição de função começa com a palavra reservada 
+    {\bf fn} seguida pelo seu {\bf nome}, uma lista de parâmetros 
+    separados por vírgula entre parênteses e um corpo.
+    \item Todas as funções devem retornar um valor mesmo que este 
+    valor não seja usado diretamente. O retorno do valor é realizado 
+    usando o comando {\bf return}.
+    \item Os parâmetros de uma função devem ser separados por vírgula.
+	    Exemplo: {\tt fn foo(a i64, b f64) \{ ... \}}.
+\end{itemize}
+
+\subsection*{Proposição ({\it statement})}
+
+Uma proposição na linguagem \lang{} pode ser:
+
+\begin{enumerate}
+\item proposição vazia;
+\item declaração de variáveis ({\it declarations});
+\item atribuição ({\it assignment});
+\item incremento e decremento;
+\item retorno de função;
+\item chamada de função ({\it function call});
+\item desvio de fluxo ({\tt if} com e sem {\tt else}), 
+	sem suporte a {\tt else if};
+\item laço ({\it loop}, só há um, o {\tt while}).
+\end{enumerate}
+
+\paragraph{Identificadores ({\it identifiers}).}
+Um identificador (nome) é uma letra, opcionalmente seguida
+por letras e {\it underscores} ``\_''.
+
+\paragraph{Declarações.}
+Uma variável deve ser declarada antes de ser usada começando
+pela palavra reservada {\bf var} e uma lista de atribuições 
+separada por vírgula ``,''. Nenhuma variável pode ser 
+declarada sem possuir um valor inicial.
+
+\subsection*{Expressões}
+As seguintes espressões exitem em \lang:
+
+\begin{itemize}
+\item Variáveis ({\tt if a \{...\} }) e literais 
+({\tt while 1 \{...\}});
+\item Expressões binárias com os operadores: \\
+{\tt + - * / \% > < >= <= == != \&\& ||};
+\item Expressões unárias com os operadores:
+	{\tt -} {\tt !};
+\item Chamadas de função.
+\end{itemize}
+
+\pagebreak
+A Listagem~\ref{lst:fat} mostra o código para o cálculo 
+do fatorial como um exemplo de aplicação da linguagem 
+\lang.
+
+\begin{lstlisting}[
+    label=lst:fat,
+    caption={Exemplo de código usando a linguagem \lang{}.}
+]
+// fat.xyz
+fn fatorial(n i64) {
+        var
+           i : i64 = 1,
+           r : i64 = 1;
+    
+        if n < 0 {
+            return -1;
+        }
+
+        while i < n + 1 {
+            r = r * i;
+            i++;
+        }
+        return r;
+}
+    
+fn main() {
+        var 
+           i : i64 = 3,
+           f : i64 = 0;
+    
+        f = fatorial(i);
+
+        return 0;
+}
+\end{lstlisting}
+
+\section*{Projeto}
+
+A partir da definição da linguagem \lang:
+
+\begin{enumerate}
+\item Escreva uma analisador léxico usando o {\tt lex} 
+para a linguagem;
+\item Escreva um analisador sintático usando o {\tt yacc};
+\item A partir do analisador sintático, imprima a tabela de 
+símbolos para o código de entrada com os símbolos apresentados 
+de acordo com o contexto. Por exemplo, para a Listagem~\ref{lst:fat}
+a saída da execução do compiladore seria parecida com:
+
+\begin{verbatim}
+fatorial.n [i64]
+fatorial.i [i64]
+fatorial.r [i64]
+main.i [i64]
+main.f [i64]
+\end{verbatim}
+
+\item Descreva como checar se uma variável ao ser usada, já foi
+  declarada. (Não é necessário especificar na gramática.)
+\end{enumerate}
+
+O código da Listagem~\ref{lst:fat} pode ser usado como referência
+nos testes. Se o arquivo contendo as regras léxicas chama-se 
+{\tt xyz.l}, com as regras gramáticais {\tt xyz.y} e o 
+código da Listagem~\ref{lst:fat} {\tt fat.xyz}, os seguintes 
+commandos podem ser executados:
+
+\begin{lstlisting}[language=bash]
+lex -o xyz.yy.c xyz.l
+yacc -d -o xyz.tab.c xyz.y
+cc -o xyz xyz.tab.c
+./xyz fat.xyz
+\end{lstlisting}
+
+Quaisquer regras gramaticais que possam surgir 
+e que não estejam definidas neste documento,
+podem ser arbitradas pelo desenvolvedor da
+gramática.
+
+Quaisquer dúvidas podem ser postadas como 
+\href{https://github.com/ajholanda/edu-compiladores/issues}{{\it issue}}
+no repositório das práticas da disciplina, para que todos
+tenham acesso às informações.
+
+\end{document}
