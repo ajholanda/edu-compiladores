@@ -1,3 +1,3 @@
 # Exercícios
 
-- [yacc](./exercicios/yacc.md)
+- [yacc](./yacc.md)
