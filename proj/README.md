@@ -15,7 +15,7 @@
 	de 64 bits (`i64`) e o tipo **ponto flutuante** de 
 	64 bits (`f64`). Na avaliação booleana o `0` é falso 
 	e qualquer número diferente de `0` corresponde ao booleano verdadeiro.
--  Espaço em branco ' ', tabulação '\t', retorno de carro '\r' e nova linha
+-  Espaço em branco, tabulação '\t', retorno de carro '\r' e nova linha
    '\n' devem ser ignorados.
 
 **Restrições.** A linguagem é bem restrita, não havendo 
@@ -29,11 +29,11 @@ vetores, ponteiros e módulos. Todo o programa é definido em um
 **Sintaxe**
 
 - Uma definição de função começa com a palavra reservada 
-  **`fn`** seguida pelo seu **nome**, uma lista de parâmetros 
+  `fn` seguida pelo seu **nome**, uma lista de parâmetros 
     separados por vírgula entre parênteses e um corpo.
 - Todas as funções devem retornar um valor mesmo que este 
     valor não seja usado diretamente. O retorno do valor é realizado 
-    usando o comando **`return`**.
+    usando o comando `return`.
 - Os parâmetros de uma função devem ser separados por vírgula.
    Exemplo: `fn foo(a i64, b f64) { ... }`.
 
@@ -47,10 +47,9 @@ Uma proposição na linguagem `xyz` pode ser:
 - Incremento e decremento;
 - Retorno de função;
 - Chamada de função (*function call*);
-- Desvio de fluxo (`if` com e sem `else`), 
+- Desvio de fluxo, `if` com e sem `else`, 
 	sem suporte a `else if`;
-- Laço de repetição `loop`, só há um, o `while`.
-\end{enumerate}
+- Laço de repetição (*loop*), só há um, o `while`.
 
 **Identificadores (*identifiers*).**
 
@@ -109,31 +108,51 @@ fn main() {
 }
 ```
 
-Listagem 1.Exemplo de código usando a linguagem `xyz`.
+Listagem 1. Exemplo de código usando a linguagem `xyz`.
 
 ## Descrição do projeto
 
-A partir da definição da linguagem xyz:
+A partir da definição da linguagem `xyz`:
 
-1. Escreva uma analisador léxico usando o {\tt lex} 
+1. Escreva uma analisador léxico usando o `lex`
 para a linguagem;
-2. Escreva um analisador sintático usando o {\tt yacc};
+2. Escreva um analisador sintático usando o `yacc`;
 3. A partir do analisador sintático, imprima a tabela de 
 símbolos para o código de entrada com os símbolos apresentados 
-de acordo com o contexto. Por exemplo, para a Listagem~\ref{lst:fat}
+de acordo com o contexto. Por exemplo, para a Listagem 1
 a saída da execução do compiladore seria parecida com:
 
 ```
-fatorial.n [i64]
-fatorial.i [i64]
-fatorial.r [i64]
-main.i [i64]
-main.f [i64]
+fun fatorial
+	var n: i64
+	var i: i64 1
+	var r: i64 1
+fun main
+	var i: i64 3
+	var f: i64 0
 ```
 
-4. Descreva como checar se uma variável ao ser usada, já foi
+4. Também a partir do analisador sintático, imprima os desvios de
+fluxo e laços de repetição na sequência em que aparecem com
+a manutenção do escopo. Para a Listagem 1, a saída seria a seguinte:
+
+```
+fatorial:
+	if:
+	while:
+main:
+```
+
+5. Descreva como checar se uma variável, ao ser usada, já foi
   declarada. (Não é necessário especificar na gramática.)
-\end{enumerate}
+
+6. Como projetista da linguagem, descreva como você faria
+a geração de código. Esse código pode ser em *assembly*,
+código intermediário em C, representação abstrata para
+máquina virtual ou representação intermediária
+para manipulação posterior, como o LLVM faz, por exemplo.
+Descreva de forma abstrata e sucinta, sem necessidade
+de geração de código.
 
 O código da Listagem 1 pode ser usado como referência
 nos testes. Se o arquivo contendo as regras léxicas chama-se 
@@ -154,6 +173,6 @@ podem ser arbitradas pelo desenvolvedor da
 gramática.
 
 Quaisquer dúvidas podem ser postadas como 
-\href{https://github.com/ajholanda/edu-compiladores/issues}{{\it issue}}
+[*issue*](https://github.com/ajholanda/edu-compiladores/issues)
 no repositório das práticas da disciplina, para que todos
 tenham acesso às informações.
