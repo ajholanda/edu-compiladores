@@ -1,81 +1,81 @@
-\section*{Análise sintática com bison (yacc)}
+# Análise sintática com yacc (bison)
 
-\newexerc~Para a gramática da calculadora de mesa simples
+1. Para a gramática da calculadora de mesa simples
 
-\begin{tabbing}
-  E \= $\rightarrow$ \= E + T \= | T \\
-  T \> $\rightarrow$ \> T * F \> | F\\
-  F \> $\rightarrow$ \> ( E ) \> | {\bf digit}\\
-\end{tabbing}
+E $\rightarrow$  E + T  | T
 
-\noindent Faça a tabela de reduções e deslocamentos, listando os
-valores da entrada e pilha a cada ação usando o {\it parser\/} LALR
-para as seguintes expressões:
+T $\rightarrow$ T * F  | F
 
-\begin{enumerate}[a.]
-\item $1 + 2$
-\item $1 * 2 + 5$
-\item $1 * 2 + 5 * 3$
-\item $1 * 2 + 5 + 3$
-\item $1 * (2 + 5) + 3$
-\item $1 * 2 + 5 + 3 * 4$
-\item $1 * 2 + 5 * (3 + 4)$
-\end{enumerate}
+F $\rightarrow$ ( E )  | **digit**
 
-\newexerc~Escreva um programa de ``calculadora de mesa'' {\tt yacc} que avalie
-expressões aritméticas usando a \href{https://pt.wikipedia.org/wiki/Nota%C3%A7%C3%A3o_polonesa_inversa}{notação polonesa inversa}.
-  %[\href{https://github.com/ajholanda/edu-compiladores/tree/main/bison/03-calc}{Solução}]
 
-\newexerc~Escreva um programa de ``calculadora de mesa'' {\tt yacc}
+Faça a tabela de reduções e deslocamentos usando o *parser* SLR(1), listando os
+valores da entrada e pilha a cada ação para as seguintes expressões:
+
+
+a. `1 + 2`
+
+b. `1 * 2 + 5`
+
+c. `1 * 2 + 5 * 3`
+
+d. `1 * 2 + 5 + 3`
+
+e. `1 * (2 + 5) + 3`
+
+f. `1 * 2 + 5 + 3 * 4`
+
+g. `1 * 2 + 5 * (3 + 4)`
+
+2. Escreva um programa de "calculadora de mesa" usando o `yacc` que avalie
+expressões aritméticas usando a [notação polonesa inversa](https://pt.wikipedia.org/wiki/Nota%C3%A7%C3%A3o_polonesa_inversa).
+ [[Solução](../yacc/03-calc)]
+
+3. Escreva um programa de "calculadora de mesa" usando o `yacc`
 que avalie expressões aritméticas usando a notação da linguagem
-\href{https://pt.wikipedia.org/wiki/Lisp}{LISP}, com a lista limitada
+[LISP](https://pt.wikipedia.org/wiki/Lisp), com a lista limitada
 a dois operandos. Por exemplo, a expressão
 
-\begin{center}
-\begin{verbatim}
+```
 (/ (* (- 3 1) 4) 2)
-\end{verbatim}
-\end{center}
+```
 
-\noindent tem como sequência de avaliação
+tem como sequência de avaliação
 
-\begin{center}
-\begin{verbatim}
+```
 (/ (* 2 4) 2) =
 (/ 8 2) =
 4
-\end{verbatim}
-\end{center}
+```
 
-%\noindent   [\href{https://github.com/ajholanda/edu-compiladores/tree/main/bison/04-calc}{Solução}]
+[[Solução](../yacc//04-calc)]
 
-\newexerc~[Aho] Escreva um programa de "calculadora de mesa" {\tt
-  yacc} que avalie expressões Booleanas tendo as operações
+4. [Aho] Escreva um programa de "calculadora de mesa" usando o
+`yacc` que avalie expressões Booleanas tendo as operações
 representadas pelos caracteres
 
-\begin{itemize}
-\item {\tt '|'} $\rightarrow$ {\tt OR},
-\item {\tt '\&'} $\rightarrow$ {\tt AND},
-\item {\tt '\^{ }'} $\rightarrow$ {\tt XOR},
-\item {\tt '\textasciitilde'} $\rightarrow$ {\tt NOT}.
-\end{itemize}
 
-\noindent O operador unário $\sim$ possui maior
+- `'|'` -> `OR`,
+- `&` -> `AND`,
+- `^` -> `XOR`,
+- `~` -> `NOT`.
+
+O operador unário $\sim$ possui maior
 precedência sobre os demais operadores, sendo que estes possuem mesma
 precedência excetuando se a expressão estiver entre parênteses. Por
 exemplo, a expressão
 
-\begin{verbatim}
+```
 0 ^ (1 | 0) | ~0
-\end{verbatim}
+```
 
-\noindent tem como sequência de avaliação
+tem como sequência de avaliação
 
-\begin{verbatim}
+```
 0 ^ (1 | 0) | 1 =
 0 ^ 1 | 1 =
 1 | 1 =
 1
-\end{verbatim}
+```
 
-%\noindent [\href{https://github.com/ajholanda/edu-compiladores/tree/main/bison/05-bool}{Solução}]
+[[Solução](../yacc/05-bool)]
