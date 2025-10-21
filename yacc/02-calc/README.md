@@ -4,7 +4,7 @@ O código deste diretório contém o analisador sintático
 para a construção de uma calculadora de mesa avançada com a 
 seguinte gramática __ambígua__ para expressões aritméticas:
 
-`E` &#8594; `E + E | E - E | E * E | E / E | (E) | -E | NUMBER`
+E &#8594; E + E | E - E | E * E | E / E | (E) | -E | **number**
 
 onde o _token_ `NUMBER` &#x2208; &#x211D;.
 
@@ -41,4 +41,5 @@ qualquer outro operador.
 
 ---
 O material contido neste diretório foi adaptado do livro ["Compiladores..."](https://www.amazon.com.br/dp/B00US12GMG).
+
 
