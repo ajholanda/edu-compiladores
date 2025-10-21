@@ -2,7 +2,7 @@
 
 ## Recursos Didáticos
 
-- `yacc`: [exercícios](./exercicios/yacc.md);
+- Parser LALR(1) e `yacc`: [exercícios](./exercicios/yacc.md), [slides](https://drive.google.com/file/d/169g7wzoAX_NbevCz-KoruCIsvPtj821e/view?usp=sharing);
 - `lex`: [exercícios](https://drive.google.com/file/d/19C753Z-0h0hborx7PcxvgWmSTw0GQ2ct/view?usp=sharing), [slides](https://drive.google.com/file/d/1xpTNwOqVL5dnu9XB7Y8XJ3rmWlpclUoJ/view?usp=sharing).
 
 ## Setup
