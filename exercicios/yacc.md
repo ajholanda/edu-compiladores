@@ -1,5 +1,7 @@
 # Análise sintática com yacc (bison)
 
+## Exercícios
+
 1. Para a gramática da calculadora de mesa simples
 
 E $\rightarrow$  E + T  | T
