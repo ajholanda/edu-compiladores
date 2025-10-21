@@ -2,10 +2,7 @@
 
 ## Recursos Didáticos
 
-- [Geração de código](https://drive.google.com/file/d/1_a0mJa-ddQVu1A4Nu8LKAtHKF_aamHdq/view?usp=sharing).
-- [Trabalho](https://drive.google.com/file/d/1P-tUrxOQxKsrR9_CErAoHeCkUPpIrgYL/view?usp=sharing).
-- `yacc`: [exercícios](https://drive.google.com/file/d/1GtXfOdvqOzy_gmTOEf3BGxLlXTaFIYad/view?usp=sharing), [slides](https://drive.google.com/file/d/1i6D5t2Rfn-H-l7-Dk6HVpaDvp37O9t3E/view?usp=sharing).
-- `lex`: [exercícios](https://drive.google.com/file/d/1ezBGztlw_yQxL1XoRgPD2VRj6eFsWUf3/view?usp=sharing), [slides](https://drive.google.com/file/d/1CUL6LCQYLW67DGgwWRcYI3-QaQmaPLuU/view?usp=sharing).
+- `lex`: [exercícios](https://drive.google.com/file/d/19C753Z-0h0hborx7PcxvgWmSTw0GQ2ct/view?usp=sharing), [slides](https://drive.google.com/file/d/1xpTNwOqVL5dnu9XB7Y8XJ3rmWlpclUoJ/view?usp=sharing).
 
 ## Setup
 
@@ -69,7 +66,7 @@ O conteúdo deste repositório é mapeado para o diretório `compiladores`.
 
 # Dicas
 
-- [Guia de instalação do Subsistema Windows para Linux para Windows 10](https://docs.microsoft.com/pt-br/windows/wsl/install-win10).
+- [Guia de instalação do Subsistema Windows para Linux para Windows](https://learn.microsoft.com/pt-br/windows/wsl/install).
 - Como instalar o [Windows Terminal](https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701) para executar comandos `Unix`-like com mais facilidade.
 -  Brian Kernighan, [UNIX: A History and a Memoir](https://www.amazon.com.br/UNIX-History-English-Brian-Kernighan-ebook/dp/B07ZQHX3R1):
 Livro que narra a história do desenvolvimento do Sistema Operacional `Unix` por quem participou ativamente

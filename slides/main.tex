@@ -1,4 +1,5 @@
-\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\documentclass[]{beamer}
 
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -31,9 +32,19 @@
             citecolor = blue,%
             anchorcolor = blue}
 
+% --- Comando para adicionar numeracao de pagina ---
+\setbeamertemplate{footline}{
+  \hfill%
+  \usebeamercolor{page number in head/foot}%
+ \usebeamerfont{page number in head/foot}%
+  \insertframenumber\,/\,\inserttotalframenumber
+  \hspace*{1em} % Espaco antes da borda direita
+}
+
 \begin{document}
 \author{Adriano J. Holanda, Zhao Liang}
-\date{2024-09-26}
-%\input{flex}
-\input{bison}
+\date{2025-08-19}
+%\input{lex}
+\input{lr}
+\input{yacc}
 \end{document}

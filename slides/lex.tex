@@ -8,7 +8,7 @@
 \subsection{Histórico}
 
 \begin{frame}{História e princípios}
-  \begin{itemize}
+  \begin{itemize}[<+->]
   \item{\color{gray!70!black}\href{https://www.gnu.org/software/bison/}{\tt
       bison} descende do
     \href{(https://pt.wikipedia.org/wiki/Yacc}{\tt yacc} desenvolvido
@@ -19,7 +19,7 @@
   \item Johnson trabalhou em estreita colaboração com
     \href{https://en.wikipedia.org/wiki/Alfred_Aho}{Alfred Aho}
     e sob a base teórica sólida do trabalho de
-    \href{https://www-cs-faculty.stanford.edu/~knuth/}{Don E. Knuth}
+    \href{https://www-cs-faculty.stanford.edu/~knuth/}{Donald E. Knuth}
     na área de compiladores.
   \item Uma das motivações era desenvolver extensões para o
     programa \href{https://en.wikipedia.org/wiki/Troff}{\tt troff}
@@ -90,7 +90,7 @@
 
   Primeira fase de compilação:
 
-  \begin{enumerate}
+  \begin{enumerate}[<+->]
   \item Lê a entrada de caracteres do código-fonte;
   \item Agrupa-os em lexemas;
   \item Produz uma saída de sequência {\it tokens\/} para cada lexema;
@@ -136,9 +136,9 @@
 
 \pause
 
-\begin{itemize}
-\item Simplicidade do projeto do compilador.
-\item Melhoria na eficiência.
+\begin{itemize}[<+->]
+\item Simplicidade do projeto do compilador.\bigskip
+\item Melhoria na eficiência.\bigskip
 \item Portabilidade.
 \end{itemize}
 
@@ -147,7 +147,7 @@
 \subsection{Expressões regulares}
 \frame{\tableofcontents[currentsubsection]}
 
-\begin{frame}{Regras - expressões regulares}
+\begin{frame}{Regras -- expressões regulares}
 
  Caracteres especiais:\bigskip
 
@@ -175,7 +175,7 @@
 \end{tabular}
 \end{frame}
 
-\begin{frame}{Regras - expressões regulares (cont.)}
+\begin{frame}{Regras -- expressões regulares (cont.)}
 
  Caracteres especiais:\bigskip
 
@@ -196,7 +196,7 @@
  \end{tabular}
  \end{frame}
 
-\begin{frame}{Exemplo - expressões regulares}
+\begin{frame}{Exemplo -- expressões regulares}
 
  \footnotesize
  \center
@@ -271,6 +271,16 @@ every state/.style={draw=blue!50,very thick,fill=blue!20},bend angle=45]
 
 \end{frame}
 
+\begin{frame}[fragile]{Por que autômato finito?}
+  { \hfil Comparação entre implementações de expressões regulares}
+  \bigskip
+ \begin{figure}
+  \centering
+  \includegraphics[scale=.5]{lex-afd-cox.png}
+  \end{figure}
+  \vfill
+  {\scriptsize Fonte: \href{https://swtch.com/~rsc/regexp/regexp1.html}{Regular Expression Matching Can Be Simple And Fast} by Russ Cox.}
+\end{frame}
 
 \subsection{Usando {\tt flex}}
 \frame{\tableofcontents[currentsubsection]}

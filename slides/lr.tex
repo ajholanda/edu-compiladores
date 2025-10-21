@@ -1,0 +1,189 @@
+\begin{frame}{Computação de conjuntos $FIRST$}
+
+{\bf Terminal}\\
+Se $a$ é um terminal, então $FIRST(a) = \{a\}$.\bigskip
+
+{\bf Vazio}\\
+$FIRST(\epsilon) = \{\epsilon\}$.\bigskip
+
+{\bf Não-terminal (Variável)}\\
+\begin{enumerate}
+ \item Se $X$ é uma variável e $X \rightarrow Y_1 Y_2 ... Y_k$ é uma produção, 
+      então tudo que está em $FIRST(Y_1)$ está em $FIRST(X)$, exceto $\epsilon$. 
+ \item Se $Y_1$ pode derivar $\epsilon$, então tudo que está em $FIRST(Y_2)$ 
+       também está em $FIRST(X)$, exceto $\epsilon$. 
+\item Continuar esse processo até que um $Y_i$ não possa 
+      derivar $\epsilon$ ou até que todos os $Y_i$ tenham sido processados. 
+\item Se todos os $Y_i$ podem derivar $\epsilon$, então adicionar $\epsilon$ a $FIRST(X)$.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Computação de conjuntos $FIRST$}{Exemplo}
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \begin{enumerate}
+              \item $E \rightarrow T S$
+
+              \item $S \rightarrow + T S\ |\ \epsilon$
+
+              \item $T \rightarrow F U\ |\ \epsilon$
+
+              \item $U \rightarrow * F U\ |\ \epsilon$
+
+              \item $F \rightarrow ( E )\ |\ int$
+            \end{enumerate}
+        \end{column}    
+        \pause
+        \begin{column}{0.7\textwidth}
+            \begin{itemize}
+                \item $FIRST(F) = \{(, int\}$
+                \item $FIRST(U) = \{*, \epsilon\}$
+                \item $FIRST(T) = FIRST(F) \cup \{\epsilon\} = \{(, int, \epsilon\}$
+                \item $FIRST(S) = \{+, \epsilon\}$
+                \item $FIRST(E) =  FIRST(T) = \{(, int, \underline{\epsilon}\} \cup FIRST(S) = \{(, int, +, \epsilon\}$
+            \end{itemize}
+        \end{column}    
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Computação de conjuntos $FOLLOW$}
+
+    $FOLLOW(A)$ é o conjunto de terminais que podem aparecer 
+depois do não-teminal $A$, incluindo o símbolo de fim de entrada
+$\$$, se $A$ pode ser o último símbolo em alguma derivação.\bigskip
+
+{\bf Regras para computar $FOLLOW$}:\medskip
+
+ \begin{enumerate}
+    \item Se $S$ é o símbolo inicial então $FOLLOW(S)=\{\$\}$.
+    \item Se $A \rightarrow \alpha B\beta$ então adicionar FIRST($\beta$) (exceto $\{\epsilon\}$) a $FOLLOW(B)$.
+    \item Se $A \rightarrow \alpha B$ ou $A \rightarrow \alpha B\beta$ onde $\epsilon \in FOLLOW(\beta)$, 
+            então adicionar $FOLLOW(A)$ a $FOLLOW(B)$.
+ \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Computação de conjuntos $FOLLOW$}{Exemplo}
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \begin{enumerate}
+              \item $E \rightarrow T S$
+
+              \item $S \rightarrow + T S\ |\ \epsilon$
+
+              \item $T \rightarrow F U\ |\ \epsilon$
+
+              \item $U \rightarrow * F U\ |\ \epsilon$
+
+              \item $F \rightarrow ( E )\ |\ int$
+            \end{enumerate}
+        \end{column}    
+        \pause
+        \begin{column}{0.7\textwidth}
+            \begin{itemize}
+                \item $FOLLOW(E) = \{\$, )\}$
+                \item $FOLLOW(S) = \{\$, )\}$
+		\item $FOLLOW(T) = \{+, ), \$ \}$
+		\item $FOLLOW(U) = \{+, ), \$ \}$
+                \item $FOLLOW(F) = \{*, +, ), \$\}$
+            \end{itemize}
+        \end{column}    
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Analisador LR(0)}{Construção do autômato}
+
+
+ {\bf Fecho ({\it closure\/})} dos conjuntos de itens\\\bigskip
+
+Se $I$ é um conjunto de itens da gramática $G$, então o
+$CLOSURE(I)$ é o conjunto de itens construído de $I$
+pela aplicação de 2 regras:
+
+	\begin{enumerate}
+		\item Inicialmente, adicionar cada item de $I$ ao $CLOSURE(I)$.
+		\item Se $A\rightarrow \alpha\ .\ B\beta$ está iem $CLOSURE(I)$ e
+		$B\rightarrow \gamma$ ao $CLOSURE(I)$ é uma regra da gramática, 
+		então adicionar o item $B\rightarrow\ .\ \gamma$ a $CLOSURE(I)$.
+		Aplicar essa regra até que não haja novos itens a serem
+		adicionados ao $CLOSURE(I)$.
+	\end{enumerate}
+
+\end{frame}
+
+% Thain, page 55
+\begin{frame}[fragile]{Analisador SLR}{{\it Parser simple} LR (SLR)}
+\small
+{\bf Tabela para a criação do analisador SLR}\bigskip
+
+	Dada uma gramática $G$ e um autômato correspondente LR(0),
+	criar as tabelas de $ACTION(s,a)$ e $GOTO(s,A)$ para todos
+	os estados $s$, terminais $a$ e não-terminais em $G$.\bigskip
+
+\lstset{mathescape=true
+	,morekeywords={goto,reduce,shift}
+	,basicstyle=\footnotesize}
+\begin{lstlisting}
+Para cada estado s:
+   Para cada item $A \rightarrow \alpha\ .\ a\beta$:
+     $ACTION(s,a) = $ desloca (shift) para o estado $t$ de acordo com  LR(0)
+   Para cada item $A\rightarrow \alpha\ .\ B\beta$:
+     $GOTO(s,B) = $ vai (goto) para o estado $t$ de acordo com  LR(0)
+   Para cada item $A \rightarrow \alpha$:
+     Para cada termina $a \in FOLLOW(A)$:
+       $ACTION(s,a) = $ reduz (reduce) pela regra $A \rightarrow \alpha$
+
+Todos os estados remanescentes são considerados erros de estados.
+\end{lstlisting}
+
+\end{frame}
+
+%% Aho3, pg 251
+\begin{frame}[fragile]{Algoritmo do analisador sintático ({\it parser\/}) LR}
+
+\lstset{mathescape=true
+	,morekeywords={accept,goto,reduce,shift}
+	,basicstyle=\footnotesize}
+\begin{lstlisting}
+pilha $S$
+$a\leftarrow$ primeiro token da entrada;
+
+while(1) {
+  s $\leftarrow$ estado no topo da pilha;
+  if ($ACTION[s,a] =$ shift $t$) {
+    Empilhar($S$, $t$);
+    $a \leftarrow$ próximo token da entrada;
+  } else if ($ACTION[s,a] =$ reduce $A\rightarrow \beta$) {
+    // Desempilhar os estados correspondentes a $\beta$
+    for(int i; i < $|\beta|$; i++) Desempilhar($S$);
+    $t \leftarrow$ topo da pilha;
+    Empilhar(S, $GOTO[t,A]$)
+  } else if ($ACTION[s,a]=$ accept)
+    break;
+  else {
+   // Chama rotina de recuperação de erro.
+   error_recovery("Erro de sintaxe");
+  }
+}
+\end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}{Fecho LR(1)}{$CLOSURE$ de LR(1)}
+
+	\begin{enumerate}
+		\item O {\it \bf lookahead} $L$ do núcleo (kernel) do estado inicial
+			é sempre $\{\$\}$.
+		\item Para um item do tipo $A\rightarrow \alpha\ .\ B, \{L\}$,
+			adicione regras do tipo $B\rightarrow\ .\ \gamma, \{L\}$.
+		\item Para um item do tipo $A\rightarrow\alpha\ .\ B\beta, \{L\}$,
+			adicione novos itens conforme as regras a seguir:
+		\begin{enumerate}
+			\item Se $\beta$ não pode produzir $\epsilon$, $L = FIRST(\beta)$;
+			\item Se $\beta$ pode produzir $\epsilon$, $L = FIRST(\beta) \cup \{L\}$.
+		\end{enumerate}
+	\end{enumerate}
+
+\end{frame}

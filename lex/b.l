@@ -13,6 +13,8 @@ int numbers = 0;
 [A-Z]   { uppers++; }
 [a-z]   { lowers++; }
 [0-9]   { numbers++; }
+\n      { }
+.*      { }
 
 %%
 int main(int argc, char **argv) {

@@ -1,23 +1,21 @@
 /*
     Exercicio 3h
 */
-
 %option noyywrap
 %{
 int keywords = 0;
-int funcs = 0;
+int ntypes = 0;
 int numbers = 0;
 int spchars = 0;
 %}
 
 %%
-char|int|float|long|double                  { /* do nothing */}
-if|else|while|do|switch|case|return         { keywords++; }
-"!"|"@"|"*"|"&"|"|"|"%"|"$"|"#"             { spchars++; }
-[a-zA-Z][a-zA-Z0-9_][ \t]*\(.*\)[ \t\n]*\{  { funcs++; }
-[0-9]+                                      { numbers++; }
-\n                                          {}
-.                                           {}
+(char|double|int|float|long|void)[ \t*]+        { ntypes++; }
+(if|while|switch)[ \t]\(                        { keywords++; }
+"!"|"@"|"&"|"|"|"%"|"$"|"#"                 { printf("%s\n", yytext);spchars++; }
+[0-9]+                                          { numbers++; }
+[ \t\r\n]                                       {}
+.                                               {}
 %%
 int main(int argc, char **argv) {
     if (argc > 1) {
@@ -32,8 +30,8 @@ int main(int argc, char **argv) {
 
     yylex();
     printf("%d palavra(s) reservada(s), \n%d caracteres especiais, \
-    \n%d funcoes, \n%d numero(s).\n",
-	    keywords, spchars, funcs, numbers);
+    \n%d tipos, \n%d numero(s).\n",
+	    keywords, spchars, ntypes, numbers);
 
     return 0;
 }
