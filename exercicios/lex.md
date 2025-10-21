@@ -1,4 +1,6 @@
-# Análise léxica
+# Análise léxica usando o `lex`
+
+## Exercícios
 
 1. Descreva o comportamento das expressões regulares a
 seguir e dê alguns exemplos de *strings* que se encaixam em cada
