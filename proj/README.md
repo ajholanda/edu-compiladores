@@ -211,6 +211,8 @@ para manipulação posterior, como o LLVM faz, por exemplo.
 Descreva de forma abstrata e sucinta, sem necessidade
 de geração de código.
 
+### Observações finais
+
 O código da Listagem 1 pode ser usado como referência
 nos testes. Se o arquivo contendo as regras léxicas chama-se 
 `xyz.l`, com as regras gramaticais `xyz.y` e o 
@@ -223,15 +225,14 @@ yacc -d -o xyz.tab.c xyz.y
 cc -o xyz xyz.tab.c
 ./xyz fat.xyz
 ```
-
 Um arquivo [Makefile](Makefile) pode ser usado para facilitar o fluxo de compilação.
 
 Quaisquer regras gramaticais que possam surgir 
 e que não estejam definidas neste documento,
 podem ser arbitradas pelo desenvolvedor da
-gramática.
+gramática, desde que mantenham coerência sintática
+com a gramática.
 
 Quaisquer dúvidas podem ser postadas como 
 [*issue*](https://github.com/ajholanda/edu-compiladores/issues)
-no repositório das práticas da disciplina, para que todos
-tenham acesso às informações.
+neste repositório, para que todos tenham acesso às informações.
