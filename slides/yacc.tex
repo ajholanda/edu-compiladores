@@ -379,7 +379,7 @@ expr    : expr '+' expr     { $$ = $1 + $3; }
     \item Esquerda: {\tt \%left '+' '-'}\\
       Exemplo: $3 - 2 - 1$
      \bigskip
-    \item Direita:  {\tt \%right}\\
+    \item Direita:  {\tt \%right **}\\
      Exemplo:   $2 ** 3 ** 2$ \hfil (potenciação)
      \bigskip
     \item Não-associativo: {\tt \%nonassoc}\\
