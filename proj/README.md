@@ -224,7 +224,7 @@ cc -o xyz xyz.tab.c
 ./xyz fat.xyz
 ```
 
-Um arquivo [Makefile](Makefile) pode ser gerado para facilitar o fluxo de compilação.
+Um arquivo [Makefile](Makefile) pode ser usado para facilitar o fluxo de compilação.
 
 Quaisquer regras gramaticais que possam surgir 
 e que não estejam definidas neste documento,
